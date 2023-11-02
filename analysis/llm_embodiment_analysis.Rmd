@@ -1,0 +1,236 @@
+---
+title: "Do MLMs show effects of Embodied Simulation"
+author: "Cameron Jones & Sean Trott"
+date: "10/10/2019"
+output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    theme: flatly
+    highlight: kate
+    code_folding: hide
+    number_sections: yes
+    fig_caption: yes
+---
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Import files and libraries
+
+```{r}
+library(extrafont)
+library(tidyverse)
+library(stringr)
+library(ggtext)
+library(xtable)
+
+datasets <- c("connell2007", "pecher2006", "muraki2021")
+models <- c("ViT-B-32", "ViT-L-14-336", "ViT-H-14", "imagebind")
+
+fnames <- c()
+
+for (dataset in datasets) {
+  for (model in models) {
+    fp <- paste0("../results/", dataset, "/", dataset, "_", model, ".csv")
+    fnames <- c(fnames, fp)
+  }
+}
+
+data <- do.call(rbind,lapply(fnames,read.csv)) %>%
+  mutate(
+    model = case_match(model,
+      "ViT-B-32" ~ "ViT-B/32",
+      "ViT-L-14-336" ~ "ViT-L/14",
+      "ViT-H-14" ~ "ViT-H/14",
+      "imagebind" ~ "ImageBind"
+    ),
+    model = factor(model, levels=c("ViT-B/32", "ViT-L/14", "ViT-H/14", "ImageBind")),
+    dataset = case_match(dataset,
+      "connell2007" ~ "Color",
+      "pecher2006" ~ "Shape",
+      "muraki2021" ~ "Orientation"
+    ),
+    dataset = factor(dataset, levels=c("Shape", "Color", "Orientation"))
+  )
+
+```
+
+# Inferential Statistics
+
+```{r}
+
+# Initialize empty data frame to store summarized results
+ttest_summary <- data.frame()
+
+# Loop through each unique combination of model and dataset
+for (model_name in unique(data$model)) {
+  for (dataset_name in unique(data$dataset)) {
+    
+    # Subset the data
+    subset_data <- data %>%
+      filter(model == model_name, dataset == dataset_name)
+    
+    # Run t-test
+    t_result <- t.test(probability ~ match, data = subset_data)
+    
+    # Store the summarized t-test result in the data frame
+    ttest_summary <- rbind(ttest_summary, data.frame(
+      model = model_name,
+      dataset = dataset_name,
+      t_value = t_result$statistic,
+      p_value = t_result$p.value,
+      df = t_result$parameter
+    ))
+  }
+}
+
+# View the summarized results
+ttest_summary <- ttest_summary %>%
+  mutate(
+    model = factor(model, levels=c("ViT-B/32", "ViT-L/14", "ViT-H/14", "ImageBind")),
+    dataset = factor(dataset, levels=c("Shape", "Color", "Orientation"))
+  )
+
+ttest_summary
+
+
+```
+
+```{r}
+
+pivoted_data <- ttest_summary %>%
+
+  mutate(
+    formatted_p = case_when(
+      p_value < 0.001 ~ "\\textbf{<0.001}",
+      p_value < 0.05 ~ paste0("\\textbf{", formatC(p_value, format = "f", digits = 3), "}"),
+      TRUE ~ formatC(p_value, format = "f", digits = 3)
+    ),
+    
+    dataset = recode(dataset,
+      pecher2006="Shape",
+      muraki2021="Orientation",
+      connell2007="Color"
+    )
+  ) %>%
+
+  pivot_wider(names_from = dataset, values_from = formatted_p, id_cols = model) %>%
+  arrange(model)
+
+pivoted_data
+
+```
+
+
+```{r}
+
+latex_table <- xtable(
+  pivoted_data,
+  caption="p-values from t-tests measuring the effect of matching vs mismatching visual features in sentences and images. Imagebind shows an effect of Shape and Color, but not Orientation. CLIP shows no significant effects of visual feature match.",
+  align = c("l", "l", "r", "r", "r")
+  )
+
+
+print(latex_table, 
+        type = "latex", 
+        hline.after = c(-1, 0, nrow(pivoted_data)), 
+        include.rownames = FALSE,
+        sanitize.text.function = identity
+)
+
+```
+
+# Visualization
+
+
+```{r}
+
+# Create a custom labelling function
+custom_labeller <- function(variable, value) {
+  # Replace with your dataset-to-label mapping
+  labels <- c(
+    pecher2006 = "SHAPE\nPecher (2009)",
+    connell2007 = "COLOR\nConnell (2007)",
+    muraki2021 = "ORIENTATION\nStanfield & Zwaan (2001)"
+    # ... add more mappings if needed
+  )
+  
+  # Extract the attribute (the part before \n) and the reference (the part after \n)
+  attribute <- str_extract(labels[value], ".*(?=\n)")
+  reference <- str_extract(labels[value], "(?<=\n).*")
+  
+  # Return the formatted label with attribute in larger font and reference in dark grey
+  return(paste0("<span style='font-size:18pt'>", attribute, "</span><br>&nbsp;<span style='font-size:12pt;color:#666666'>", reference, "</span>"))
+}
+
+```
+
+
+```{r}
+
+# Add a column for significance stars
+ttest_summary$signif_star <- with(ttest_summary, ifelse(p_value < 0.001, '***', 
+                                              ifelse(p_value < 0.01, '**', 
+                                              ifelse(p_value < 0.05, '*', 'ns'))))
+
+# Merge this significance data with your main dataset
+data_with_signif <- merge(data, ttest_summary, by = c("model", "dataset"))
+
+ttest_summary <- ttest_summary %>%
+  mutate(
+    model = case_match(
+      model,
+      "ViT-B/32" ~ "B/32",
+      "ViT-L/14" ~ "L/14",
+      "ViT-H/14" ~ "H/14",
+      "ImageBind" ~ "IB"
+    ),
+    model = factor(model, levels=c("B/32","L/14","H/14","IB")),
+    y = case_when(
+      p_value < 0.05 ~ 0.75,
+      T ~ 0.8
+    )
+  )
+  
+
+# Plot probability vs match for each model, faceted by dataset
+data_with_signif %>%
+  mutate(
+    model = case_match(
+      model,
+      "ViT-B/32" ~ "B/32",
+      "ViT-L/14" ~ "L/14",
+      "ViT-H/14" ~ "H/14",
+      "ImageBind" ~ "IB"
+    ),
+    model = factor(model, levels=c("B/32","L/14","H/14","IB"))
+  ) %>%
+  ggplot(aes(x = model, y = probability)) +
+  stat_summary(aes(fill = match), fun="mean", geom="bar", position="dodge") +
+  stat_summary(aes(fill = match), fun.data="mean_cl_boot", geom="errorbar", position=position_dodge(width=0.9), width=0.2) +
+  facet_wrap(~dataset, labeller = labeller(dataset = custom_labeller)) +
+  theme_minimal(base_size = 16) +  # Use theme_bw with increased base font size
+  scale_fill_manual(values = c("match" = "#1C73C2CC", "mismatch" = "#D32F2FCC")) +  # Custom colors
+  theme(
+    legend.position = "bottom",
+    axis.title = element_text(size = 18),  # Increase axis title size
+    axis.text = element_text(size = 16),  # Increase axis text size
+    axis.text.x = element_text(size = 16),  # Increase axis text size
+    strip.text = element_markdown()
+  ) +
+  geom_text(data=ttest_summary, aes(label = signif_star, y = y), vjust = -1, size=6, fontface="plain", color="#222222") +
+  coord_cartesian(ylim=c(0, 0.85)) +
+  labs(x = "Model", y = "Probability", fill = "Match")
+
+ggsave("../manuscript/figures/results.pdf", width = 9, height=5, device="pdf")
+
+```
+
+
+
+
+

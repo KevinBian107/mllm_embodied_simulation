@@ -1,0 +1,61 @@
+source,object,sentence_a,sentence_b,image_a,image_b,set,order
+new,apple pie,There was apple pie on the table.,There was apple pie on the plate. ,applepie.jpg,applepieslice.jpg,1,2
+new,horse,There was a horse in the stable.,There was a horse in the arena.,horse.jpg,horserunning.jpg,1,7
+new,Scarf,There was a scarf on the rack.,There was a scarf on the floor.,scarfhanging.jpg,scarf.jpg,1,10
+new,shoelace,There was a shoelace in the package.,There was a shoelace in the sneaker.,shoelace.jpg,shoelacetied.jpg,1,11
+new,Staple,There was a staple in the machine.,There was a staple in the article.,staplemachine.jpg,staplepaper.jpg,1,12
+new,wheat,There was wheat in the field.,There was wheat in the mill.,wheat.jpg,wheatpieces.jpg,1,14
+new,coat,There was a coat on the rack.,There was a coat on the floor.,coatrack.jpg,coatfloor.jpg,2,18
+new,match,There was a match in the box.,There was a match in the ashtray.,match.jpg,matchburned.jpg,2,20
+new,owl,There was an owl in the barn.,There was an owl in the sky.,owlsit.jpg,owlsky.jpg,2,23
+new,pumpkin,There was a pumpkin on the cart.,There was a pumpkin on the porch.,pumpkin.jpg,pumpkinface.jpg,2,25
+new,Squid,There was a squid in the water.,There was squid in the pasta.,squid.jpg,squidcooked.jpg,2,27
+new,carrot,There was a carrot in the garden.,There was carrot in the curry.,carrot.jpg,carrotsliced.jpg,3,32
+new,garbage bag,There was a garbage bag in the cupboard,There was a garbage bag in the dumpster.,garbagebagempty.jpg,garbagbagfulll.jpg,3,35
+new,goose,There was a goose in the field.,There was a goose in the sky.,gooseland.jpg,goose.jpg,3,36
+new,ice,There was ice in the glass.,There was ice in the gutter.,ice.jpg,icicles.jpg,3,38
+new,swiss knife,There was a swiss knife in his pocket.,There was a swiss knife in his hand.,swissknifeclosed.jpg,swissknife.jpg,3,42
+new,umbrella,There was an umbrella in her bag.,There was an umbrella in her hand.,umbrellabag.jpg,umbrellahand.jpg,3,45
+new,cucumber,There was a cucumber in the fridge.,There was cucumber in the salad.,cucumber.jpg,cucumbersliced.jpg,4,51
+new,lamp,There was a lamp on the floor.,There was a lamp on the table.,lampfloor.jpg,lamptable.jpg,4,54
+new,map,There was a map in the glove compartment.,There was a map on the wall.,mapfolded.jpg,mapwall.jpg,4,56
+new new,avocado,There was an avocado in the crate.,There was avocado in the dish.,avocado.jpg,avocadosliced.jpg,1,3
+new new,frog,There was a frog in the field.,There was a frog in the pool.,frogsit.jpg,frogswim.jpg,1,5
+new new,paint,There was paint in the store.,There was paint in the drawing.,paintcan.jpg,paintstroke.jpg,1,9
+new new,walnut,There was a walnut on the tree.,There was walnut on the brownie.,walnut.jpg,walnutpiece.jpg,1,13
+new new,zodiac,There was a zodiac in the ocean.,There was a zodiac in the garage.,zodiac.jpg,zodiacdeflated.jpg,1,15
+new new,sugar,There was sugar on the table.,There was sugar on the spoon.,sugardispenser.jpg,sugar.jpg,2,28
+new new,tinfoil,There was tinfoil in the drawer.,There was tinfoil in the garbage.,foil.jpg,foilcrcumpled.jpg,2,29
+new new,cheesecake,There was cheesecake for the party.,There was cheesecake for the guest.,cheesecake.jpg,cheesecakeslice.jpg,3,33
+new new,hose,There was a hose on the wall.,There was a hose on the lawn.,hosewall.jpg,hoselawn.jpg,3,37
+new new,soap,There was soap in the dish.,There was soap in the bath.,soapbar.jpg,soaplather.jpg,3,41
+new new,tape,There was tape on the shelf.,There was tape on the box.,taperoll.jpg,tape.jpg,3,43
+new new,banana,There was a banana on the counter.,There was banana on the pancake.,banana.jpg,bananacut.jpg,4,48
+new new,ketchup,There was ketchup on the table.,There was ketchup on the plate.,ketchupbottle.jpg,ketchup.jpg,4,53
+new new,wool,There was wool in the basket.,There was wool in the sweater.,woolball.jpg,woolknit.jpg,4,60
+original,airplane,There was an airplane in the hangar.,There was an airplane in the sky.,airplanewheels.jpg,airplanesky.jpg,1,1
+original,chicken ,There was a chicken in the coop. ,There was chicken in the oven.,chicken.jpg,chickenoven.jpg,1,4
+original,hockey,There was a hockey player on the ice. ,There was a hockey player on the bench.,hockeyice.jpg,hockeyplayerbench.jpg,1,6
+original,lime,There was a lime in the produce section.,There was lime in the Corona bottle.,lime.jpg,limewedge.jpg,1,8
+original,balloon ,There was a balloon in the pack. ,There was a balloon in the air.,balloondeflated.jpg,balloon.jpg,2,16
+original,bread,There was bread in the bakery window.,There was bread in the toaster. ,breadloaf.jpg,breadtoast.jpg,2,17
+original,egg,There was an egg in the refrigerator.,There was an egg in the skillet. ,egg.jpg,eggpan.jpg,2,19
+original,mushroom,There was a mushroom in the forest. ,There was mushroom in the soup. ,mushroom.jpg,mushroomsliced.jpg,2,21
+original,newspaper,There was a newspaper on the driveway.,There was a newspaper on the rack,newspaper.jpg,newspaperrack.jpg,2,22
+original,pineapple,There was a pineapple on the plant. ,There was pineapple on the skewer.,pineapple.jpg,pineapplechunk.jpg,2,24
+original,sailboat,There was a sailboat on the trailer.,There was a sailboat on the lake.,boatnosail.jpg,boat.jpg,2,26
+original,tomato ,There was a tomato on the vine. ,There was tomato on the pizza.,tomato.jpg,tomatoslice.jpg,2,30
+original,book,There was a book on the shelf.,There was a book on the photocopier. ,book.jpg,bookdown.jpg,3,31
+original,fish,There was a fish in the pond.,There was fish in the oven. ,fish.jpg,fishoven.jpg,3,34
+original,lemon,There was a lemon in the tree.,There was lemon in the drink.,lemon.jpg,lemonslice.jpg,3,39
+original,onion,There was an onion in the basket.,There was onion in the batter. ,onion.jpg,onionslice.jpg,3,40
+original,towel,There was a towel on the floor.,There was a towel on the rack. ,towelfloor.jpg,towelhanging.jpg,3,44
+original,watermelon,There was a watermelon in the garden. ,There was watermelon in the bowl.,watermelonwhole.jpg,watermelonslice.jpg,4,46
+original,apple,There was an apple in the bag.,There was apple in the salad. ,apple.jpg,applewedges.jpg,4,47
+original,cigarette,There was a cigarette in the box.,There was a cigarette in the ashtray. ,cigarette.jpg,cigarettebutt.jpg,4,49
+original,corn,There was corn in the field.,There was corn in the cooking pot. ,corn.jpg,cornpieces.jpg,4,50
+original,eagle,There was an eagle in the nest. ,There was an eagle in the sky.,eaglesit.jpg,eaglesky.jpg,4,52
+original,lobster ,There was a lobster in the sea.,There was lobster in the salad. ,lobster.jpg,lobstermeat.jpg,4,55
+original,shirt,There was a shirt on the hanger.,There was a shirt on the shelf.,shirthanging.jpg,shirtfolded.jpg,4,57
+original,spaghetti ,There was spaghetti in the box.,There was spaghetti in the bowl.,spagettibox.jpg,spaghetticooked.jpg,4,58
+original,tissue,There was a tissue in the box.,There was a tissue in the trashcan.,tissue.jpg,tissuecrumpled.jpg,4,59

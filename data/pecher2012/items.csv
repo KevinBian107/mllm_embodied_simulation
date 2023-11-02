@@ -1,0 +1,49 @@
+version,sentence,match,mismatch
+1,Becca used the scissors to carve her initials into the wet concrete.,scssorV.bmp,scssorH.bmp
+1,"Frank placed the iron onto the shelf, hoping he wouldn't be late. ",ironV.bmp,ironH.bmp
+1,"Janie grabbed the broom and swept the house, pretending she was Cinderella. ",broomV.bmp,broomH.bmp
+1,Jim prepared to insert the screw into the top of the cabinet. ,screwV.bmp,screwH.bmp
+1,Mick set his guitar on the rack as he warmed up for the concert. ,guitarV.bmp,guitarH.bmp
+1,Sara situated the expensive plate on its holder on the shelf.,plateV.bmp,plateH.bmp
+1,The anxious little boy placed the salt shaker onto the table.,saltV.bmp,saltH.bmp
+1,The caterpillar inched along the lamp post. ,caterpillarV.bmp,caterpillarH.bmp
+1,The lab assistant put the key to the monkey cage on the hook. ,keyV.bmp,keyH.bmp
+1,"The teenager held her brush up like a microphone, pretending to be a famous rock star. ",brushV.bmp,brushH.bmp
+1,The waiter filled the wineglass while admiring Maureen's gown.,glassV.bmp,glassH.bmp
+2,Derek held his bat high as the ball approached. ,batV.bmp,batH.bmp
+2,James placed the bowl into an open slot in the dishwasher. ,bowlV.bmp,bowlH.bmp
+2,"Jessica stuck the bottle in the ice, anticipating a romantic evening.",bottleV.bmp,bottleH.bmp
+2,Laura hung the decoration on the line with the clothespin. ,decorationV.bmp,decorationH.bmp
+2,Rick hurriedly stuck his pencil in the coffee mug. ,pencilV.bmp,pencilH.bmp
+2,The accountant stuck his pen into his pocket protector. ,penV.bmp,penH.bmp
+2,The carpenter hammered the nail into the floor plank.,nailV.bmp,nailH.bmp
+2,The hunter shone the flashlight onto the floor of the cavern. ,flashlightV.bmp,flashlightH.bmp
+2,The race car driver fastened the fire-extinguisher onto the garage wall. ,frxtinguisherV.bmp,frxtinguisherH.bmp
+2,The toddler drew a kitty cat with his crayon on his bedroom floor.,crayonV.bmp,crayonH.bmp
+2,The young husband prepared to place the spare tire onto the wheel.,wheelV.bmp,wheelH.bmp
+1,Becca used the scissors to carve her initials into the tree.,scssorH.bmp,scssorV.bmp
+1,"Frank pressed the iron onto his pants, hoping he wouldn't be late. ",ironH.bmp,ironV.bmp
+1,"Janie grabbed the broom and rode it around the house, pretending it was her horse. ",broomH.bmp,broomV.bmp
+1,Jim prepared to insert the screw into the side of the cabinet. ,screwH.bmp,screwV.bmp
+1,Mick strummed his guitar as he warmed up for the concert. ,guitarH.bmp,guitarV.bmp
+1,Sara situated the expensive plate on its mat on the table.,plateH.bmp,plateV.bmp
+1,The anxious little boy knocked the salt shaker over onto the table.,saltH.bmp,saltV.bmp
+1,The caterpillar inched along the tree branch. ,caterpillarH.bmp,caterpillarV.bmp
+1,The lab assistant put the key to the monkey cage in the lock. ,keyH.bmp,keyV.bmp
+1,"The teenager placed her brush in the bottom of her bag, looking forward to the party. ",brushH.bmp,brushV.bmp
+1,The waiter knocked over the wineglass while admiring Maureen's gown. ,glassH.bmp,glassV.bmp
+2,Derek swung his bat as the ball approached. ,batH.bmp,batV.bmp
+2,James placed the bowl into an open space in the cabinet. ,bowlH.bmp,bowlV.bmp
+2,"Jessica stuck the bottle in the wine rack, anticipating a romantic evening.",bottleH.bmp,bottleV.bmp
+2,Laura threw the decoration in the drawer with the clothespin. ,decorationH.bmp,decorationV.bmp
+2,Rick hurriedly stuck his pencil in the desk drawer. ,pencilH.bmp,pencilV.bmp
+2,The accountant stuck his pen behind his ear.,penH.bmp,penV.bmp
+2,The carpenter hammered the nail into the wall.,nailH.bmp,nailV.bmp
+2,The hunter shone the flashlight into the mouth of the cavern. ,flashlightH.bmp,flashlightV.bmp
+2,The race car driver fastened the fire-extinguisher under his seat.,frxtinguisherH.bmp,frxtinguisherV.bmp
+2,The toddler drew a kitty cat with his crayon on his bedroom door. ,crayonH.bmp,crayonV.bmp
+2,The young husband prepared to place the spare tire into the trunk. ,wheelH.bmp,wheelV.bmp
+2,The librarian put the book back on the shelf.,bookV.bmp,bookH.bmp
+1,The lumberjack left his axe sticking in the side of the stump after winning the axe toss. ,axeV.bmp,axeH.bmp
+1,The lumberjack left his axe sticking in the top of the stump after winning the axe toss. ,axeH.bmp,axeV.bmp
+2,The librarian put the book back on the table. ,bookH.bmp,bookV.bmp
