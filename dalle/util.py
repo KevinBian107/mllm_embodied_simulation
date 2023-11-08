@@ -8,7 +8,7 @@ def generate(prompt_input):
     #Create DALLE Object
     client = OpenAI()
 
-    modiefied_prompt = prompt_input + "that looks like objects in reality"
+    modiefied_prompt = prompt_input + " that looks like objects in reality"
 
     #Call for generation using DALLE
     response = client.images.generate(
