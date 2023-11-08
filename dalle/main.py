@@ -1,6 +1,9 @@
-from util import generate, convert
+from pathlib import Path
+from util import generate
+import pandas as pd
 
-PROMPT = "UCSD Franklin Antonio Hall in UCLA"
-#file_name = generate(PROMPT)
+PROMPT = list(pd.read_csv("affordance.csv").get("distinguishing_word"))
 
-convert("responses/UCSD -1699336824.json")
+for i in PROMPT[:2:]:
+    print(i + " is generated")
+    generate(i)
