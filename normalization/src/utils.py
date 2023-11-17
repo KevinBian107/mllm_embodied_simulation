@@ -85,7 +85,6 @@ def expand2square(pil_img, background_color=(255,255,255)):
         result.paste(pil_img, ((height - width) // 2, 0))
         return result
 
-
 def setup_model(model_name):
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     
