@@ -1,55 +1,55 @@
-item,text_1,text_2,text_3,image_natural,image_synthesis
-1,laptop computer,,,laptopcomputer_natrual.jpeg,laptopcomputer_synthesis.png
-1,paper napkin,,,papernapkin_natrual.jpeg,papernapkin_synthesis.png
-1,hunting rifle,,,huntingrifle_natrual.jpeg,huntingrifle_synthesis.png
-2,nickel,,,nickel_natrual.jpeg,nickel_synthesis.png
-2,pen,,,pen_natrual.jpeg,pen_synthesis.png
-2,string,,,string_natrual.jpeg,string_synthesis.png
-3,old magazines,,,oldmagazines_natrual.jpeg,oldmagazines_synthesis.png
-3,floppy disks,,,floppydisks_natrual.jpeg,floppydisks_synthesis.png
-3,pencils,,,pencils_natrual.jpeg,pencils_synthesis.png
-4,ski-mask,,,ski-mask_natrual.jpeg,ski-mask_synthesis.png
-4,matchbook,,,matchbook_natrual.jpeg,matchbook_synthesis.png
-4,newspaper,,,newspaper_natrual.jpeg,newspaper_synthesis.png
-5,cookie jar,,,cookiejar_natrual.jpeg,cookiejar_synthesis.png
-5,clothes dryer,,,clothesdryer_natrual.jpeg,clothesdryer_synthesis.png
-5,broom closet,,,broomcloset_natrual.jpeg,broomcloset_synthesis.png
-6,tractor,,,tractor_natrual.jpeg,tractor_synthesis.png
-6,chair,,,chair_natrual.jpeg,chair_synthesis.png
-6,hammer,,,hammer_natrual.jpeg,hammer_synthesis.png
-7,map,,,map_natrual.jpeg,map_synthesis.png
-7,rock,,,rock_natrual.jpeg,rock_synthesis.png
-7,bellows,,,bellows_natrual.jpeg,bellows_synthesis.png
-8,large refrigerator,,,largerefrigerator_natrual.jpeg,largerefrigerator_synthesis.png
-8,red beanbag,,,redbeanbag_natrual.jpeg,redbeanbag_synthesis.png
-8,plastic spoon,,,plasticspoon_natrual.jpeg,plasticspoon_synthesis.png
-9,electric outlet,,,electricoutlet_natrual.jpeg,electricoutlet_synthesis.png
-9,vacuum cleaner,,,vacuumcleaner_natrual.jpeg,vacuumcleaner_synthesis.png
-9,door knob,,,doorknob_natrual.jpeg,doorknob_synthesis.png
-10,screw driver,,,screwdriver_natrual.jpeg,screwdriver_synthesis.png
-10,seven iron,,,seveniron_natrual.jpeg,seveniron_synthesis.png
-10,ham sandwich,,,hamsandwich_natrual.jpeg,hamsandwich_synthesis.png
-11,warm thermos,,,warmthermos_natrual.jpeg,warmthermos_synthesis.png
-11,hair dryer,,,hairdryer_natrual.jpeg,hairdryer_synthesis.png
-11,hair pin,,,hairpin_natrual.jpeg,hairpin_synthesis.png
-12,shower cap,,,showercap_natrual.jpeg,showercap_synthesis.png
-12,hamburger bun,,,hamburgerbun_natrual.jpeg,hamburgerbun_synthesis.png
-12,sandwich wrapper,,,sandwichwrapper_natrual.jpeg,sandwichwrapper_synthesis.png
-13,leaves,,,leaves_natrual.jpeg,leaves_synthesis.png
-13,water,,,water_natrual.jpeg,water_synthesis.png
-13,clothes,,,clothes_natrual.jpeg,clothes_synthesis.png
-14,towel,,,towel_natrual.jpeg,towel_synthesis.png
-14,shirt,,,shirt_natrual.jpeg,shirt_synthesis.png
-14,glasses,,,glasses_natrual.jpeg,glasses_synthesis.png
-15,bent earring,,,bentearring_natrual.jpeg,bentearring_synthesis.png
-15,note pad,,,notepad_natrual.jpeg,notepad_synthesis.png
-15,popsicle stick,,,popsiclestick_natrual.jpeg,popsiclestick_synthesis.png
-16,rolled paper,,,rolledpaper_natrual.jpeg,rolledpaper_synthesis.png
-16,mop handle,,,mophandle_natrual.jpeg,mophandle_synthesis.png
-16,smelly sock,,,smellysock_natrual.jpeg,smellysock_synthesis.png
-17,chalk,,,chalk_natrual.jpeg,chalk_synthesis.png
-17,rice,,,rice_natrual.jpeg,rice_synthesis.png
-17,water,,,water_natrual.jpeg,water_synthesis.png
-18,her mailbox,,,hermailbox_natrual.jpeg,hermailbox_synthesis.png
-18,the lavatory,,,thelavatory_natrual.jpeg,thelavatory_synthesis.png
-18,her office,,,heroffice_natrual.jpeg,heroffice_synthesis.png
+item,text_1,text_2,text_3,image_natural,image_synthetic
+1,laptop computer,,,laptopcomputer_natrual.jpeg,laptopcomputer_synthetic.png
+1,paper napkin,,,papernapkin_natrual.jpeg,papernapkin_synthetic.png
+1,hunting rifle,,,huntingrifle_natrual.jpeg,huntingrifle_synthetic.png
+2,nickel,,,nickel_natrual.jpeg,nickel_synthetic.png
+2,pen,,,pen_natrual.jpeg,pen_synthetic.png
+2,string,,,string_natrual.jpeg,string_synthetic.png
+3,old magazines,,,oldmagazines_natrual.jpeg,oldmagazines_synthetic.png
+3,floppy disks,,,floppydisks_natrual.jpeg,floppydisks_synthetic.png
+3,pencils,,,pencils_natrual.jpeg,pencils_synthetic.png
+4,ski-mask,,,ski-mask_natrual.jpeg,ski-mask_synthetic.png
+4,matchbook,,,matchbook_natrual.jpeg,matchbook_synthetic.png
+4,newspaper,,,newspaper_natrual.jpeg,newspaper_synthetic.png
+5,cookie jar,,,cookiejar_natrual.jpeg,cookiejar_synthetic.png
+5,clothes dryer,,,clothesdryer_natrual.jpeg,clothesdryer_synthetic.png
+5,broom closet,,,broomcloset_natrual.jpeg,broomcloset_synthetic.png
+6,tractor,,,tractor_natrual.jpeg,tractor_synthetic.png
+6,chair,,,chair_natrual.jpeg,chair_synthetic.png
+6,hammer,,,hammer_natrual.jpeg,hammer_synthetic.png
+7,map,,,map_natrual.jpeg,map_synthetic.png
+7,rock,,,rock_natrual.jpeg,rock_synthetic.png
+7,bellows,,,bellows_natrual.jpeg,bellows_synthetic.png
+8,large refrigerator,,,largerefrigerator_natrual.jpeg,largerefrigerator_synthetic.png
+8,red beanbag,,,redbeanbag_natrual.jpeg,redbeanbag_synthetic.png
+8,plastic spoon,,,plasticspoon_natrual.jpeg,plasticspoon_synthetic.png
+9,electric outlet,,,electricoutlet_natrual.jpeg,electricoutlet_synthetic.png
+9,vacuum cleaner,,,vacuumcleaner_natrual.jpeg,vacuumcleaner_synthetic.png
+9,door knob,,,doorknob_natrual.jpeg,doorknob_synthetic.png
+10,screw driver,,,screwdriver_natrual.jpeg,screwdriver_synthetic.png
+10,seven iron,,,seveniron_natrual.jpeg,seveniron_synthetic.png
+10,ham sandwich,,,hamsandwich_natrual.jpeg,hamsandwich_synthetic.png
+11,warm thermos,,,warmthermos_natrual.jpeg,warmthermos_synthetic.png
+11,hair dryer,,,hairdryer_natrual.jpeg,hairdryer_synthetic.png
+11,hair pin,,,hairpin_natrual.jpeg,hairpin_synthetic.png
+12,shower cap,,,showercap_natrual.jpeg,showercap_synthetic.png
+12,hamburger bun,,,hamburgerbun_natrual.jpeg,hamburgerbun_synthetic.png
+12,sandwich wrapper,,,sandwichwrapper_natrual.jpeg,sandwichwrapper_synthetic.png
+13,leaves,,,leaves_natrual.jpeg,leaves_synthetic.png
+13,water,,,water_natrual.jpeg,water_synthetic.png
+13,clothes,,,clothes_natrual.jpeg,clothes_synthetic.png
+14,towel,,,towel_natrual.jpeg,towel_synthetic.png
+14,shirt,,,shirt_natrual.jpeg,shirt_synthetic.png
+14,glasses,,,glasses_natrual.jpeg,glasses_synthetic.png
+15,bent earring,,,bentearring_natrual.jpeg,bentearring_synthetic.png
+15,note pad,,,notepad_natrual.jpeg,notepad_synthetic.png
+15,popsicle stick,,,popsiclestick_natrual.jpeg,popsiclestick_synthetic.png
+16,rolled paper,,,rolledpaper_natrual.jpeg,rolledpaper_synthetic.png
+16,mop handle,,,mophandle_natrual.jpeg,mophandle_synthetic.png
+16,smelly sock,,,smellysock_natrual.jpeg,smellysock_synthetic.png
+17,chalk,,,chalk_natrual.jpeg,chalk_synthetic.png
+17,rice,,,rice_natrual.jpeg,rice_synthetic.png
+17,water,,,water_natrual.jpeg,water_synthetic.png
+18,her mailbox,,,hermailbox_natrual.jpeg,hermailbox_synthetic.png
+18,the lavatory,,,thelavatory_natrual.jpeg,thelavatory_synthetic.png
+18,her office,,,heroffice_natrual.jpeg,heroffice_synthetic.png
