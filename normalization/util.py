@@ -80,3 +80,142 @@ def expand2square(pil_img, background_color=(255,255,255)):
         result = Image.new(pil_img.mode, (height, height), background_color)
         result.paste(pil_img, ((height - width) // 2, 0))
         return result
+
+def setup_model(model_name):
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    
+    if model_name == "ViT-B-32":
+        model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained='openai')
+
+    elif model_name == "ViT-L-14-336":
+        model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained='openai')
+
+    elif model_name == "ViT-H-14":
+        model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained='laion2b_s32b_b79k')
+
+    elif model_name == "ViT-g-14":
+        model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained='laion2b_s34b_b88k')
+
+    elif model_name == "ViT-bigG-14":
+        model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained='laion2b_s39b_b160k')
+
+    elif model_name == "ViT-L-14":
+        model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained='openai')
+    
+    elif model_name == "imagebind":
+        model = imagebind_model.imagebind_huge(pretrained=True)
+        preprocess = None
+
+    else:
+        raise ValueError("Model not implemented")
+    
+    if isinstance(model, open_clip.model.CLIP):
+        tokenizer = open_clip.get_tokenizer(model_name)
+    else:
+        tokenizer = None
+    
+    model.eval()
+    model.to(device)
+    return model, preprocess, tokenizer, device
+
+def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
+    #Labeled data set passed in
+    df = pd.read_csv(csv_path)
+    all_results = []
+
+    for index, item in tqdm(df.iterrows(), total=len(df)):
+
+        #retrieve separate information for text & images
+        text_list = [item['text_1'].strip(), item['text_2'].strip(),item['text_3'].strip()]
+        image_natural_paths = [os.path.join(img_folder, item['image_natural'])]
+        image_synthetic_paths = [os.path.join(img_folder, item['image_syhthetic'])]
+        # image_paths = [path.replace(".jpg", ".png") for path in image_paths]
+        
+        #model 1 Open AI CLIP
+        if isinstance(model, open_clip.model.CLIP):
+            
+            #tokenize & preprocess images
+            image_inputs = [preprocess(Image.open(path)).unsqueeze(0).to(device) for path in image_paths]
+            text_inputs = tokenizer(text_list)
+            
+            with torch.no_grad(): #no tracking of gradient for space efficiency
+                text_features = model.encode_text(text_inputs)
+                image_features = torch.stack([model.encode_image(img_input) for img_input in image_inputs]).squeeze()
+                # image_features /= image_features.norm(dim=-1, keepdim=True)
+                # text_features /= text_features.norm(dim=-1, keepdim=True)
+                # Calculate the similarity
+                
+                results = torch.softmax(text_features @ image_features.T, dim=-1)
+
+        #model 2 Open AI CLIP
+        elif isinstance(model, clip.model.CLIP):
+
+            #tokenize & preprocess images
+            text_inputs = clip.tokenize(text_list).to(device)
+            image_inputs = [preprocess(Image.open(path)).unsqueeze(0).to(device) for path in image_paths]
+            
+            with torch.no_grad():
+                text_features = model.encode_text(text_inputs)
+                image_features = [model.encode_image(img_input) for img_input in image_inputs]
+                # Calculate the similarity
+                
+                results = torch.softmax(text_features @ torch.stack(image_features).squeeze().T, dim=-1)
+
+        #model 3 Meta Image Bind
+        elif isinstance(model, imagebind_model.ImageBindModel):
+            
+            #tokenize & preprocess images
+            inputs = {ModalityType.TEXT: data.load_and_transform_text(text_list, device),
+                      ModalityType.VISION: data.load_and_transform_vision_data(image_paths, device)}
+            
+            with torch.no_grad():
+                embeddings = model(inputs)
+
+                results = torch.softmax(embeddings[ModalityType.TEXT] @ embeddings[ModalityType.VISION].T, dim=-1)
+            
+        else:
+            raise ValueError("Model must be either 'clip' or 'imagebind'")
+
+        #Put everything in a table
+        all_results.append({
+            'match_a': results[0][0].item(),
+            'mismatch_a': results[0][1].item(),
+            'match_b': results[1][1].item(),
+            'mismatch_b': results[1][0].item(),
+            'object': item['object']
+        })
+
+    return pd.DataFrame(all_results)
+
+def format_results(df, model_name, dataset):
+    melted_df = pd.melt(df.drop(columns=['object']))
+    melted_df['sentence'] = melted_df['variable'].apply(
+        lambda x: x.split('_')[-1])
+    melted_df['match'] = melted_df['variable'].apply(
+        lambda x: x.split('_')[0])
+    melted_df = melted_df.rename(
+        columns={'value': 'probability'}).drop(columns=['variable'])
+    melted_df = melted_df[["sentence", "match", "probability"]]
+    melted_df["model"] = model_name
+    melted_df["dataset"] = dataset
+    return melted_df
+
+def results_summary(df):
+    summary = df[["match", "probability"]].groupby(["match"]).mean()
+    return summary
+
+def ttest(df):
+    from scipy.stats import ttest_ind
+    match = df[df["match"] == "match"]["probability"]
+    mismatch = df[df["match"] == "mismatch"]["probability"]
+    t, p = ttest_ind(match, mismatch)
+    return t, p
+
+def plot_results(df, save_path=None):
+    sns.pointplot(data=df, x="match",
+                  y="probability", hue="sentence")
+
+    if save_path:
+        plt.savefig(save_path)
+    else:
+        plt.show()
