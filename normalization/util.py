@@ -126,9 +126,10 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
     for index, item in tqdm(df.iterrows(), total=len(df)):
 
         #retrieve separate information for text & images
-        text_list = [item['text_1'].strip(), item['text_2'].strip(),item['text_3'].strip()]
-        image_natural_paths = [os.path.join(img_folder, item['image_natural'])]
-        image_synthetic_paths = [os.path.join(img_folder, item['image_syhthetic'])]
+        text_list = [item['text_1'].strip(), 
+                     item['text_2'].strip()]
+        image_paths = [os.path.join(img_folder, item['image_a']),
+                       os.path.join(img_folder, item['image_b'])]
         # image_paths = [path.replace(".jpg", ".png") for path in image_paths]
         
         #model 1 Open AI CLIP
