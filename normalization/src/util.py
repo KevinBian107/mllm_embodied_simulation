@@ -126,11 +126,10 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
     for index, item in tqdm(df.iterrows(), total=len(df)):
 
         #retrieve separate information for text & images
-        text_list = [item['text_1'].strip(), 
-                     item['text_2'].strip()]
+        text_list = [item['text_a'].strip(), 
+                     item['text_b'].strip()]
         image_paths = [os.path.join(img_folder, item['image_a']),
                        os.path.join(img_folder, item['image_b'])]
-        # image_paths = [path.replace(".jpg", ".png") for path in image_paths]
         
         #model 1 Open AI CLIP
         if isinstance(model, open_clip.model.CLIP):
@@ -142,11 +141,9 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
             with torch.no_grad(): #no tracking of gradient for space efficiency
                 text_features = model.encode_text(text_inputs)
                 image_features = torch.stack([model.encode_image(img_input) for img_input in image_inputs]).squeeze()
-                # image_features /= image_features.norm(dim=-1, keepdim=True)
-                # text_features /= text_features.norm(dim=-1, keepdim=True)
-                # Calculate the similarity
                 
-                results = torch.softmax(text_features @ image_features.T, dim=-1)
+                # Calculate Similarity (image to words)
+                results = torch.softmax(image_features @ text_features.T, dim=-1)
 
         #model 2 Open AI CLIP
         elif isinstance(model, clip.model.CLIP):
@@ -158,9 +155,9 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
             with torch.no_grad():
                 text_features = model.encode_text(text_inputs)
                 image_features = [model.encode_image(img_input) for img_input in image_inputs]
-                # Calculate the similarity
                 
-                results = torch.softmax(text_features @ torch.stack(image_features).squeeze().T, dim=-1)
+                # Calculate Similarity (image to words)
+                results = torch.softmax(torch.stack(image_features).squeeze() @ text_features.T, dim=-1)
 
         #model 3 Meta Image Bind
         elif isinstance(model, imagebind_model.ImageBindModel):
@@ -172,7 +169,8 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
             with torch.no_grad():
                 embeddings = model(inputs)
 
-                results = torch.softmax(embeddings[ModalityType.TEXT] @ embeddings[ModalityType.VISION].T, dim=-1)
+                # Calculate Similarity (image to words)
+                results = torch.softmax(embeddings[ModalityType.VISION] @ embeddings[ModalityType.TEXT].T, dim=-1)
             
         else:
             raise ValueError("Model must be either 'clip' or 'imagebind'")
@@ -190,13 +188,13 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
 def format_results(df, model_name, dataset):
     melted_df = pd.melt(df.drop(columns=['object']))
-    melted_df['sentence'] = melted_df['variable'].apply(
+    melted_df['text'] = melted_df['variable'].apply(
         lambda x: x.split('_')[-1])
     melted_df['match'] = melted_df['variable'].apply(
         lambda x: x.split('_')[0])
     melted_df = melted_df.rename(
         columns={'value': 'probability'}).drop(columns=['variable'])
-    melted_df = melted_df[["sentence", "match", "probability"]]
+    melted_df = melted_df[["text", "match", "probability"]]
     melted_df["model"] = model_name
     melted_df["dataset"] = dataset
     return melted_df
@@ -214,7 +212,7 @@ def ttest(df):
 
 def plot_results(df, save_path=None):
     sns.pointplot(data=df, x="match",
-                  y="probability", hue="sentence")
+                  y="probability", hue="text")
 
     if save_path:
         plt.savefig(save_path)
