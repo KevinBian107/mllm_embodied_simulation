@@ -127,9 +127,11 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
         #retrieve separate information for text & images
         text_list = [item['text_a'].strip(), 
-                     item['text_b'].strip()]
+                     item['text_b'].strip(),
+                     item['text_c'].strip()]
         image_paths = [os.path.join(img_folder, item['image_a']),
-                       os.path.join(img_folder, item['image_b'])]
+                       os.path.join(img_folder, item['image_b']),
+                       os.path.join(img_folder, item['image_c'])]
         
         #model 1 Open AI CLIP
         if isinstance(model, open_clip.model.CLIP):
@@ -177,17 +179,24 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
         #Put everything in a table
         all_results.append({
-            'match_a': results[0][0].item(),
-            'mismatch_a': results[0][1].item(),
-            'match_b': results[1][1].item(),
-            'mismatch_b': results[1][0].item(),
-            'object': item['object']
+            'match_aa': results[0][0].item(),
+            'mismatch_ab': results[0][1].item(),
+            'mismatch_ac': results[0][2].item(),
+
+            'match_bb': results[1][1].item(),
+            'mismatch_ba': results[1][0].item(),
+            'mismatch_bc': results[1][2].item(),
+
+            'match_cc': results[2][2].item(),
+            'mismatch_ca': results[2][0].item(),
+            'mismatch_cb': results[2][1].item(),
+
         })
 
     return pd.DataFrame(all_results)
 
 def format_results(df, model_name, dataset):
-    melted_df = pd.melt(df.drop(columns=['object']))
+    melted_df = pd.melt(df)
     melted_df['text'] = melted_df['variable'].apply(
         lambda x: x.split('_')[-1])
     melted_df['match'] = melted_df['variable'].apply(

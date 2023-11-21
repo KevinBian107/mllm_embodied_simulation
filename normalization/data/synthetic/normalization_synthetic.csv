@@ -1,55 +1,19 @@
-item_id,text_a,text_b,image_a,image_b,object
-1,laptop computer,her office,laptopcomputer_synthetic.png,heroffice_synthetic.png,laptop computer
-2,paper napkin,laptop computer,papernapkin_synthetic.png,laptopcomputer_synthetic.png,paper napkin
-3,hunting rifle,paper napkin,huntingrifle_synthetic.png,papernapkin_synthetic.png,hunting rifle
-4,nickel,hunting rifle,nickel_synthetic.png,huntingrifle_synthetic.png,nickel
-5,pen,nickel,pen_synthetic.png,nickel_synthetic.png,pen
-6,string,pen,string_synthetic.png,pen_synthetic.png,string
-7,old magazines,string,oldmagazines_synthetic.png,string_synthetic.png,old magazines
-8,floppy disks,old magazines,floppydisks_synthetic.png,oldmagazines_synthetic.png,floppy disks
-9,pencils,floppy disks,pencils_synthetic.png,floppydisks_synthetic.png,pencils
-10,ski-mask,pencils,skimask_synthetic.png,pencils_synthetic.png,ski-mask
-11,matchbook,ski-mask,matchbook_synthetic.png,skimask_synthetic.png,matchbook
-12,newspaper,matchbook,newspaper_synthetic.png,matchbook_synthetic.png,newspaper
-13,cookie jar,newspaper,cookiejar_synthetic.png,newspaper_synthetic.png,cookie jar
-14,clothes dryer,cookie jar,clothesdryer_synthetic.png,cookiejar_synthetic.png,clothes dryer
-15,broom closet,clothes dryer,broomcloset_synthetic.png,clothesdryer_synthetic.png,broom closet
-16,tractor,broom closet,tractor_synthetic.png,broomcloset_synthetic.png,tractor
-17,chair,tractor,chair_synthetic.png,tractor_synthetic.png,chair
-18,hammer,chair,hammer_synthetic.png,chair_synthetic.png,hammer
-19,map,hammer,map_synthetic.png,hammer_synthetic.png,map
-20,rock,map,rock_synthetic.png,map_synthetic.png,rock
-21,bellows,rock,bellows_synthetic.png,rock_synthetic.png,bellows
-22,large refrigerator,bellows,largerefrigerator_synthetic.png,bellows_synthetic.png,large refrigerator
-23,red beanbag,large refrigerator,redbeanbag_synthetic.png,largerefrigerator_synthetic.png,red beanbag
-24,plastic spoon,red beanbag,plasticspoon_synthetic.png,redbeanbag_synthetic.png,plastic spoon
-25,electric outlet,plastic spoon,electricoutlet_synthetic.png,plasticspoon_synthetic.png,electric outlet
-26,vacuum cleaner,electric outlet,vacuumcleaner_synthetic.png,electricoutlet_synthetic.png,vacuum cleaner
-27,door knob,vacuum cleaner,doorknob_synthetic.png,vacuumcleaner_synthetic.png,door knob
-28,screw driver,door knob,screwdriver_synthetic.png,doorknob_synthetic.png,screw driver
-29,seven iron,screw driver,seveniron_synthetic.png,screwdriver_synthetic.png,seven iron
-30,ham sandwich,seven iron,hamsandwich_synthetic.png,seveniron_synthetic.png,ham sandwich
-31,warm thermos,ham sandwich,warmthermos_synthetic.png,hamsandwich_synthetic.png,warm thermos
-32,hair dryer,warm thermos,hairdryer_synthetic.png,warmthermos_synthetic.png,hair dryer
-33,hair pin,hair dryer,hairpin_synthetic.png,hairdryer_synthetic.png,hair pin
-34,shower cap,hair pin,showercap_synthetic.png,hairpin_synthetic.png,shower cap
-35,hamburger bun,shower cap,hamburgerbun_synthetic.png,showercap_synthetic.png,hamburger bun
-36,sandwich wrapper,hamburger bun,sandwichwrapper_synthetic.png,hamburgerbun_synthetic.png,sandwich wrapper
-37,leaves,sandwich wrapper,leaves_synthetic.png,sandwichwrapper_synthetic.png,leaves
-38,water,leaves,water_synthetic.png,leaves_synthetic.png,water
-39,clothes,water,clothes_synthetic.png,water_synthetic.png,clothes
-40,towel,clothes,towel_synthetic.png,clothes_synthetic.png,towel
-41,shirt,towel,shirt_synthetic.png,towel_synthetic.png,shirt
-42,glasses,shirt,glasses_synthetic.png,shirt_synthetic.png,glasses
-43,bent earring,glasses,bentearring_synthetic.png,glasses_synthetic.png,bent earring
-44,note pad,bent earring,notepad_synthetic.png,bentearring_synthetic.png,note pad
-45,popsicle stick,note pad,popsiclestick_synthetic.png,notepad_synthetic.png,popsicle stick
-46,rolled paper,popsicle stick,rolledpaper_synthetic.png,popsiclestick_synthetic.png,rolled paper
-47,mop handle,rolled paper,mophandle_synthetic.png,rolledpaper_synthetic.png,mop handle
-48,smelly sock,mop handle,smellysock_synthetic.png,mophandle_synthetic.png,smelly sock
-49,chalk,smelly sock,chalk_synthetic.png,smellysock_synthetic.png,chalk
-50,rice,chalk,rice_synthetic.png,chalk_synthetic.png,rice
-51,water,rice,water_synthetic.png,rice_synthetic.png,water
-52,her mailbox,water,hermailbox_synthetic.png,water_synthetic.png,her mailbox
-53,the lavatory,her mailbox,thelavatory_synthetic.png,hermailbox_synthetic.png,the lavatory
-54,her office,the lavatory,heroffice_synthetic.png,thelavatory_synthetic.png,her office
+item_id,text_a,text_b,text_c,image_a,image_b,image_c
+1,laptop computer,paper napkin,hunting rifle,laptopcomputer_synthetic.png,papernapkin_synthetic.png,huntingrifle_synthetic.png
+2,nickel,pen,string,nickel_synthetic.png,pen_synthetic.png,string_synthetic.png
+3,old magazines,floppy disks,pencils,oldmagazines_synthetic.png,floppydisks_synthetic.png,pencils_synthetic.png
+4,ski-mask,matchbook,newspaper,skimask_synthetic.png,matchbook_synthetic.png,newspaper_synthetic.png
+5,cookie jar,clothes dryer,broom closet,cookiejar_synthetic.png,clothesdryer_synthetic.png,broomcloset_synthetic.png
+6,tractor,chair,hammer,tractor_synthetic.png,chair_synthetic.png,hammer_synthetic.png
+7,map,rock,bellows,map_synthetic.png,rock_synthetic.png,bellows_synthetic.png
+8,large refrigerator,red beanbag,plastic spoon,largerefrigerator_synthetic.png,redbeanbag_synthetic.png,plasticspoon_synthetic.png
+9,electric outlet,vacuum cleaner,door knob,electricoutlet_synthetic.png,vacuumcleaner_synthetic.png,doorknob_synthetic.png
+10,screw driver,seven iron,ham sandwich,screwdriver_synthetic.png,seveniron_synthetic.png,hamsandwich_synthetic.png
+11,warm thermos,hair dryer,hair pin,warmthermos_synthetic.png,hairdryer_synthetic.png,hairpin_synthetic.png
+12,shower cap,hamburger bun,sandwich wrapper,showercap_synthetic.png,hamburgerbun_synthetic.png,sandwichwrapper_synthetic.png
+13,leaves,water,clothes,leaves_synthetic.png,water_synthetic.png,clothes_synthetic.png
+14,towel,shirt,glasses,towel_synthetic.png,shirt_synthetic.png,glasses_synthetic.png
+15,bent earring,note pad,popsicle stick,bentearring_synthetic.png,notepad_synthetic.png,popsiclestick_synthetic.png
+16,rolled paper,mop handle,smelly sock,rolledpaper_synthetic.png,mophandle_synthetic.png,smellysock_synthetic.png
+17,chalk,rice,water,chalk_synthetic.png,rice_synthetic.png,water_synthetic.png
+18,her mailbox,the lavatory,her office,hermailbox_synthetic.png,thelavatory_synthetic.png,heroffice_synthetic.png
