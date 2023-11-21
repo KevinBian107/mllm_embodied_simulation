@@ -191,19 +191,22 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
             'mismatch_ca': results[2][0].item(),
             'mismatch_cb': results[2][1].item(),
 
+            'item_id': item['item_id']
+
         })
 
     return pd.DataFrame(all_results)
 
 def format_results(df, model_name, dataset):
-    melted_df = pd.melt(df)
+    melted_df = pd.melt(df, id_vars = ["item_id"])
     melted_df['text'] = melted_df['variable'].apply(
         lambda x: x.split('_')[-1])
     melted_df['match'] = melted_df['variable'].apply(
         lambda x: x.split('_')[0])
     melted_df = melted_df.rename(
         columns={'value': 'probability'}).drop(columns=['variable'])
-    melted_df = melted_df[["text", "match", "probability"]]
+    print(melted_df)
+    melted_df = melted_df[["text", "match", "probability", "item_id"]]
     melted_df["model"] = model_name
     melted_df["dataset"] = dataset
     return melted_df
