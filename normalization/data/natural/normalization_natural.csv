@@ -1,55 +1,55 @@
 item_id,text_a,text_b,image_a,image_b,object
-1,laptop computer,her office,laptopcomputer_natrual.jpeg,heroffice_natrual.jpeg,laptop computer
-2,paper napkin,laptop computer,papernapkin_natrual.jpeg,laptopcomputer_natrual.jpeg,paper napkin
-3,hunting rifle,paper napkin,huntingrifle_natrual.jpeg,papernapkin_natrual.jpeg,hunting rifle
-4,nickel,hunting rifle,nickel_natrual.jpeg,huntingrifle_natrual.jpeg,nickel
-5,pen,nickel,pen_natrual.jpeg,nickel_natrual.jpeg,pen
-6,string,pen,string_natrual.jpeg,pen_natrual.jpeg,string
-7,old magazines,string,oldmagazines_natrual.jpeg,string_natrual.jpeg,old magazines
-8,floppy disks,old magazines,floppydisks_natrual.jpeg,oldmagazines_natrual.jpeg,floppy disks
-9,pencils,floppy disks,pencils_natrual.jpeg,floppydisks_natrual.jpeg,pencils
-10,ski-mask,pencils,ski-mask_natrual.jpeg,pencils_natrual.jpeg,ski-mask
-11,matchbook,ski-mask,matchbook_natrual.jpeg,ski-mask_natrual.jpeg,matchbook
-12,newspaper,matchbook,newspaper_natrual.jpeg,matchbook_natrual.jpeg,newspaper
-13,cookie jar,newspaper,cookiejar_natrual.jpeg,newspaper_natrual.jpeg,cookie jar
-14,clothes dryer,cookie jar,clothesdryer_natrual.jpeg,cookiejar_natrual.jpeg,clothes dryer
-15,broom closet,clothes dryer,broomcloset_natrual.jpeg,clothesdryer_natrual.jpeg,broom closet
-16,tractor,broom closet,tractor_natrual.jpeg,broomcloset_natrual.jpeg,tractor
-17,chair,tractor,chair_natrual.jpeg,tractor_natrual.jpeg,chair
-18,hammer,chair,hammer_natrual.jpeg,chair_natrual.jpeg,hammer
-19,map,hammer,map_natrual.jpeg,hammer_natrual.jpeg,map
-20,rock,map,rock_natrual.jpeg,map_natrual.jpeg,rock
-21,bellows,rock,bellows_natrual.jpeg,rock_natrual.jpeg,bellows
-22,large refrigerator,bellows,largerefrigerator_natrual.jpeg,bellows_natrual.jpeg,large refrigerator
-23,red beanbag,large refrigerator,redbeanbag_natrual.jpeg,largerefrigerator_natrual.jpeg,red beanbag
-24,plastic spoon,red beanbag,plasticspoon_natrual.jpeg,redbeanbag_natrual.jpeg,plastic spoon
-25,electric outlet,plastic spoon,electricoutlet_natrual.jpeg,plasticspoon_natrual.jpeg,electric outlet
-26,vacuum cleaner,electric outlet,vacuumcleaner_natrual.jpeg,electricoutlet_natrual.jpeg,vacuum cleaner
-27,door knob,vacuum cleaner,doorknob_natrual.jpeg,vacuumcleaner_natrual.jpeg,door knob
-28,screw driver,door knob,screwdriver_natrual.jpeg,doorknob_natrual.jpeg,screw driver
-29,seven iron,screw driver,seveniron_natrual.jpeg,screwdriver_natrual.jpeg,seven iron
-30,ham sandwich,seven iron,hamsandwich_natrual.jpeg,seveniron_natrual.jpeg,ham sandwich
-31,warm thermos,ham sandwich,warmthermos_natrual.jpeg,hamsandwich_natrual.jpeg,warm thermos
-32,hair dryer,warm thermos,hairdryer_natrual.jpeg,warmthermos_natrual.jpeg,hair dryer
-33,hair pin,hair dryer,hairpin_natrual.jpeg,hairdryer_natrual.jpeg,hair pin
-34,shower cap,hair pin,showercap_natrual.jpeg,hairpin_natrual.jpeg,shower cap
-35,hamburger bun,shower cap,hamburgerbun_natrual.jpeg,showercap_natrual.jpeg,hamburger bun
-36,sandwich wrapper,hamburger bun,sandwichwrapper_natrual.jpeg,hamburgerbun_natrual.jpeg,sandwich wrapper
-37,leaves,sandwich wrapper,leaves_natrual.jpeg,sandwichwrapper_natrual.jpeg,leaves
-38,water,leaves,water_natrual.jpeg,leaves_natrual.jpeg,water
-39,clothes,water,clothes_natrual.jpeg,water_natrual.jpeg,clothes
-40,towel,clothes,towel_natrual.jpeg,clothes_natrual.jpeg,towel
-41,shirt,towel,shirt_natrual.jpeg,towel_natrual.jpeg,shirt
-42,glasses,shirt,glasses_natrual.jpeg,shirt_natrual.jpeg,glasses
-43,bent earring,glasses,bentearring_natrual.jpeg,glasses_natrual.jpeg,bent earring
-44,note pad,bent earring,notepad_natrual.jpeg,bentearring_natrual.jpeg,note pad
-45,popsicle stick,note pad,popsiclestick_natrual.jpeg,notepad_natrual.jpeg,popsicle stick
-46,rolled paper,popsicle stick,rolledpaper_natrual.jpeg,popsiclestick_natrual.jpeg,rolled paper
-47,mop handle,rolled paper,mophandle_natrual.jpeg,rolledpaper_natrual.jpeg,mop handle
-48,smelly sock,mop handle,smellysock_natrual.jpeg,mophandle_natrual.jpeg,smelly sock
-49,chalk,smelly sock,chalk_natrual.jpeg,smellysock_natrual.jpeg,chalk
-50,rice,chalk,rice_natrual.jpeg,chalk_natrual.jpeg,rice
-51,water,rice,water_natrual.jpeg,rice_natrual.jpeg,water
-52,her mailbox,water,hermailbox_natrual.jpeg,water_natrual.jpeg,her mailbox
-53,the lavatory,her mailbox,thelavatory_natrual.jpeg,hermailbox_natrual.jpeg,the lavatory
-54,her office,the lavatory,heroffice_natrual.jpeg,thelavatory_natrual.jpeg,her office
+1,laptop computer,her office,laptopcomputer_natural.jpeg,heroffice_natural.jpeg,laptop computer
+2,paper napkin,laptop computer,papernapkin_natural.jpeg,laptopcomputer_natural.jpeg,paper napkin
+3,hunting rifle,paper napkin,huntingrifle_natural.jpeg,papernapkin_natural.jpeg,hunting rifle
+4,nickel,hunting rifle,nickel_natural.jpeg,huntingrifle_natural.jpeg,nickel
+5,pen,nickel,pen_natural.jpeg,nickel_natural.jpeg,pen
+6,string,pen,string_natural.jpeg,pen_natural.jpeg,string
+7,old magazines,string,oldmagazines_natural.jpeg,string_natural.jpeg,old magazines
+8,floppy disks,old magazines,floppydisks_natural.jpeg,oldmagazines_natural.jpeg,floppy disks
+9,pencils,floppy disks,pencils_natural.jpeg,floppydisks_natural.jpeg,pencils
+10,ski-mask,pencils,skimask_natural.jpeg,pencils_natural.jpeg,ski-mask
+11,matchbook,ski-mask,matchbook_natural.jpeg,skimask_natural.jpeg,matchbook
+12,newspaper,matchbook,newspaper_natural.jpeg,matchbook_natural.jpeg,newspaper
+13,cookie jar,newspaper,cookiejar_natural.jpeg,newspaper_natural.jpeg,cookie jar
+14,clothes dryer,cookie jar,clothesdryer_natural.jpeg,cookiejar_natural.jpeg,clothes dryer
+15,broom closet,clothes dryer,broomcloset_natural.jpeg,clothesdryer_natural.jpeg,broom closet
+16,tractor,broom closet,tractor_natural.jpeg,broomcloset_natural.jpeg,tractor
+17,chair,tractor,chair_natural.jpeg,tractor_natural.jpeg,chair
+18,hammer,chair,hammer_natural.jpeg,chair_natural.jpeg,hammer
+19,map,hammer,map_natural.jpeg,hammer_natural.jpeg,map
+20,rock,map,rock_natural.jpeg,map_natural.jpeg,rock
+21,bellows,rock,bellows_natural.jpeg,rock_natural.jpeg,bellows
+22,large refrigerator,bellows,largerefrigerator_natural.jpeg,bellows_natural.jpeg,large refrigerator
+23,red beanbag,large refrigerator,redbeanbag_natural.jpeg,largerefrigerator_natural.jpeg,red beanbag
+24,plastic spoon,red beanbag,plasticspoon_natural.jpeg,redbeanbag_natural.jpeg,plastic spoon
+25,electric outlet,plastic spoon,electricoutlet_natural.jpeg,plasticspoon_natural.jpeg,electric outlet
+26,vacuum cleaner,electric outlet,vacuumcleaner_natural.jpeg,electricoutlet_natural.jpeg,vacuum cleaner
+27,door knob,vacuum cleaner,doorknob_natural.jpeg,vacuumcleaner_natural.jpeg,door knob
+28,screw driver,door knob,screwdriver_natural.jpeg,doorknob_natural.jpeg,screw driver
+29,seven iron,screw driver,seveniron_natural.jpeg,screwdriver_natural.jpeg,seven iron
+30,ham sandwich,seven iron,hamsandwich_natural.jpeg,seveniron_natural.jpeg,ham sandwich
+31,warm thermos,ham sandwich,warmthermos_natural.jpeg,hamsandwich_natural.jpeg,warm thermos
+32,hair dryer,warm thermos,hairdryer_natural.jpeg,warmthermos_natural.jpeg,hair dryer
+33,hair pin,hair dryer,hairpin_natural.jpeg,hairdryer_natural.jpeg,hair pin
+34,shower cap,hair pin,showercap_natural.jpeg,hairpin_natural.jpeg,shower cap
+35,hamburger bun,shower cap,hamburgerbun_natural.png,showercap_natural.jpeg,hamburger bun
+36,sandwich wrapper,hamburger bun,sandwichwrapper_natural.jpeg,hamburgerbun_natural.png,sandwich wrapper
+37,leaves,sandwich wrapper,leaves_natural.jpeg,sandwichwrapper_natural.jpeg,leaves
+38,water,leaves,water_natural.jpeg,leaves_natural.jpeg,water
+39,clothes,water,clothes_natural.jpeg,water_natural.jpeg,clothes
+40,towel,clothes,towel_natural.jpeg,clothes_natural.jpeg,towel
+41,shirt,towel,shirt_natural.jpeg,towel_natural.jpeg,shirt
+42,glasses,shirt,glasses_natural.jpeg,shirt_natural.jpeg,glasses
+43,bent earring,glasses,bentearring_natural.jpeg,glasses_natural.jpeg,bent earring
+44,note pad,bent earring,notepad_natural.jpeg,bentearring_natural.jpeg,note pad
+45,popsicle stick,note pad,popsiclestick_natural.jpeg,notepad_natural.jpeg,popsicle stick
+46,rolled paper,popsicle stick,rolledpaper_natural.jpeg,popsiclestick_natural.jpeg,rolled paper
+47,mop handle,rolled paper,mophandle_natural.jpeg,rolledpaper_natural.jpeg,mop handle
+48,smelly sock,mop handle,smellysock_natural.jpeg,mophandle_natural.jpeg,smelly sock
+49,chalk,smelly sock,chalk_natural.jpeg,smellysock_natural.jpeg,chalk
+50,rice,chalk,rice_natural.jpeg,chalk_natural.jpeg,rice
+51,water,rice,water_natural.jpeg,rice_natural.jpeg,water
+52,her mailbox,water,hermailbox_natural.jpeg,water_natural.jpeg,her mailbox
+53,the lavatory,her mailbox,thelavatory_natural.jpeg,hermailbox_natural.jpeg,the lavatory
+54,her office,the lavatory,heroffice_natural.jpeg,thelavatory_natural.jpeg,her office
