@@ -147,21 +147,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
                 # Calculate Similarity (image to words)
                 results = torch.softmax(image_features @ text_features.T, dim=-1)
 
-        #model 2 Open AI CLIP
-        elif isinstance(model, clip.model.CLIP):
-
-            #tokenize & preprocess images
-            text_inputs = clip.tokenize(text_list).to(device)
-            image_inputs = [preprocess(Image.open(path)).unsqueeze(0).to(device) for path in image_paths]
-            
-            with torch.no_grad():
-                text_features = model.encode_text(text_inputs)
-                image_features = [model.encode_image(img_input) for img_input in image_inputs]
-                
-                # Calculate Similarity (image to words)
-                results = torch.softmax(torch.stack(image_features).squeeze() @ text_features.T, dim=-1)
-
-        #model 3 Meta Image Bind
+        #model 2 Meta Image Bind
         elif isinstance(model, imagebind_model.ImageBindModel):
             
             #tokenize & preprocess images
