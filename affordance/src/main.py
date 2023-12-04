@@ -18,7 +18,7 @@ def main(args):
     # Set up paths
     model, preprocess, tokenizer, device = setup_model(model_name)
     
-    csv_path = f"data/{dataset}/normalization_{dataset}.csv"
+    csv_path = f"data/{dataset}/affordance_{dataset}.csv"
     img_folder = f"data/{dataset}/images"
 
     img_save_path = f"results/{dataset}/{dataset}_{model_name}.png"

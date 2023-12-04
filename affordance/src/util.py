@@ -123,14 +123,11 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
     df = pd.read_csv(csv_path)
     all_results = []
 
+    ### TODO: Change for affordance testing
     for index, item in tqdm(df.iterrows(), total=len(df)):
-
-        ### TODO: concatenate condition + caption
-
+        # afforded vs non-afforded
         #retrieve separate information for text & images
-        text_list = [item['text_a'].strip(), 
-                     item['text_b'].strip(), ### only a single text string
-                     item['text_c'].strip()]
+        text_list = [item['condition'].strip()] ### only a single text string
         image_paths = [os.path.join(img_folder, item['afforded_image']),
                        os.path.join(img_folder, item['non-afforded_image'])]
         
@@ -167,10 +164,11 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
         #Put everything in a table
         all_results.append({
             ### replace with probability for afforded and non-afforded
-            ###
+            'afforded': results[0][0].item(),
+            'nonafforded': results[1][0].item(),
 
             'prompt_type': item['prompt_type'],
-            'item_id': item['item_id']
+            'group_id': item['group_id']
 
         })
 
@@ -178,7 +176,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
 def format_results(df, model_name, dataset):
     #Like a Permutation Results: Wide -> Long
-    melted_df = pd.melt(df, id_vars = ["item_id"])
+    melted_df = pd.melt(df, id_vars = ["group_id"])
     melted_df['text'] = melted_df['variable'].apply(
         lambda x: x.split('_')[-1])
     melted_df['match'] = melted_df['variable'].apply(
@@ -186,10 +184,11 @@ def format_results(df, model_name, dataset):
     melted_df = melted_df.rename(
         columns={'value': 'probability'}).drop(columns=['variable'])
     print(melted_df)
-    melted_df = melted_df[["text", "match", "probability", "item_id"]]
+    melted_df = melted_df[["text", "match", "probability", "group_id"]]
     melted_df["model"] = model_name
     melted_df["dataset"] = dataset
     return melted_df
+    # To revise for affordance format
 
 def results_summary(df):
     summary = df[["match", "probability"]].groupby(["match"]).mean()
