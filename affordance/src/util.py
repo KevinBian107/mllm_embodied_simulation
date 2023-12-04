@@ -125,13 +125,14 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
     for index, item in tqdm(df.iterrows(), total=len(df)):
 
+        ### TODO: concatenate condition + caption
+
         #retrieve separate information for text & images
         text_list = [item['text_a'].strip(), 
-                     item['text_b'].strip(),
+                     item['text_b'].strip(), ### only a single text string
                      item['text_c'].strip()]
-        image_paths = [os.path.join(img_folder, item['image_a']),
-                       os.path.join(img_folder, item['image_b']),
-                       os.path.join(img_folder, item['image_c'])]
+        image_paths = [os.path.join(img_folder, item['afforded_image']),
+                       os.path.join(img_folder, item['non-afforded_image'])]
         
         #model 1 Open AI CLIP
         if isinstance(model, open_clip.model.CLIP):
@@ -165,18 +166,10 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
         #Put everything in a table
         all_results.append({
-            'match_aa': results[0][0].item(),
-            'mismatch_ab': results[0][1].item(),
-            'mismatch_ac': results[0][2].item(),
+            ### replace with probability for afforded and non-afforded
+            ###
 
-            'match_bb': results[1][1].item(),
-            'mismatch_ba': results[1][0].item(),
-            'mismatch_bc': results[1][2].item(),
-
-            'match_cc': results[2][2].item(),
-            'mismatch_ca': results[2][0].item(),
-            'mismatch_cb': results[2][1].item(),
-
+            'prompt_type': item['prompt_type'],
             'item_id': item['item_id']
 
         })
