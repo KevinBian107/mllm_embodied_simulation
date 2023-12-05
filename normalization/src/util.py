@@ -124,7 +124,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
     all_results = []
 
     for index, item in tqdm(df.iterrows(), total=len(df)):
-
+        
         #retrieve separate information for text & images
         text_list = [item['text_a'].strip(), 
                      item['text_b'].strip(),
