@@ -10,6 +10,9 @@ warnings.filterwarnings("ignore", module="torchvision.transforms._functional_vid
 warnings.filterwarnings("ignore", module="torchvision.transforms._transforms_video")
 
 def main(args):
+    '''
+    Main function to call on, select model and dataset, call on args
+    '''
 
     # Parse arguments -> terminal passing in directly
     model_name = args.model

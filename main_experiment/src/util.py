@@ -82,6 +82,9 @@ def expand2square(pil_img, background_color=(255,255,255)):
         return result
 
 def setup_model(model_name):
+    '''
+    Checking models
+    '''
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     
     if model_name == "ViT-B-32":
@@ -119,6 +122,11 @@ def setup_model(model_name):
     return model, preprocess, tokenizer, device
 
 def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
+    '''
+    1. Reads in an data frame
+    2. Extract texts and images for using model
+    3. Feeding into different model depedns on isnatcnes
+    '''
     #Labeled data set passed in
     df = pd.read_csv(csv_path)
     all_results = []
@@ -174,9 +182,14 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
     return pd.DataFrame(all_results)
 
 def format_results(df, model_name, dataset):
-    #Like a Permutation Results: Wide -> Long
-    #Select id to be the same, afforded and non afforded as the variables
-    #36 conditions, 72 separate afforded and non afforded conditions
+    '''
+    Melting & reformatting the result
+    Melting is essentially making some of the columns in the data frame as a tag for variable, making wide df to long df
+
+    1. Select id to be the same, afforded and non afforded as the variables
+    2. 36 conditions, 72 separate afforded and non afforded conditions
+
+    '''
     melted_df = pd.melt(df.drop(columns = ['prompt_type']), id_vars = ["group_id"], value_vars=['afforded', 'non_afforded'])
 
     #Rename columns
@@ -191,10 +204,16 @@ def format_results(df, model_name, dataset):
     return melted_df
 
 def results_summary(df):
+    '''
+    Producing summary for data frame given in
+    '''
     summary = df[["relationships", "probability"]].groupby(["relationships"]).mean()
     return summary
 
 def ttest(df):
+    '''
+    Conducting Independnet T Test
+    '''
     from scipy.stats import ttest_ind
     afforded = df[df["relationships"] == "afforded"]["probability"]
     non_afforded = df[df["relationships"] == "non_afforded"]["probability"]
@@ -202,6 +221,9 @@ def ttest(df):
     return t, p
 
 def plot_results(df, save_path=None):
+    '''
+    Plot results and save plots
+    '''
     sns.boxplot(data=df, x="relationships", y="probability")
 
     if save_path:
