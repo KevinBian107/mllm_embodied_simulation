@@ -3,14 +3,14 @@ Advances in computational capabilities and the diversity of available datasets h
 
 In human subjects, one potential answer to the “grounding issue” is the embodied simulation hypothesis, which states that during language comprehension, the brain activates similar regions as if the comprehender is “experiencing” it. The ability to comprehend affordance relationships in sentences may be an method in examining the embodied simulation hypothesis in human subjects (i.e. “Sam is using a shirt to dry himself after a swim” is afforded comparing to its counterparts of “Sam is using glasses to dry himself after a swim”). We wonder if machines, particularly MLLMs, would use a similar schematic approach to “understand” language. Thus, we propose to probe MLLMs’ “understanding” of language through testing its ability for embodied simulation through using particularly affordance stimulus.
 
-# Method
-This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models.
+# Question & Method
+This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models. We are interested in addressing the question of “Do multimodal language models capture the affordance relationships of objects in languages and, thus, showing evidence of embodied simulation?”
 
 In summary, we will be presenting a scenario in text to the models and then provide 3 images of the 3 different critical objects for the models to choose. Then, we would extract the probability assigned to each of the images and see if they would match our expectations.
 
 Due to lack of existing data set on image data on affordance critical object, we propose to both generate images from the DALLE Open AI model and collect images online for each of the according critical object in the previous affordance study from (Glenberg & Robertson, 2000). Afterwards, a normalization task would be performed with all the testing MLLMs from Jones and Trott (2023) to ensure that they “understand” all these images separately by doing an initial text/image matching. At last, all of the images would be feed into the testing MLLMs in a triple pair format (image_related x image_afforded x image_non-afforded) for selection after prompting the model with a particular scenario.
 
-# Codes
+# Structure of thsi study
 The code is mainly separated into three sections & each one has its own data format and data frame format:
 
 ## Data Collections
