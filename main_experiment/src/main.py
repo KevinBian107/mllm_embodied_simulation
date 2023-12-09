@@ -39,11 +39,10 @@ def main(args):
     # Print and save results for data slected
     t, p = ttest(results)
     print(summary)
-    print(f"t = {t}, p = {p}")
-    print()
+    print(f"t = {t}, p = {p}", '\n')
 
     anova_result = anova(results)
-    print (anova_result)
+    print (anova_result,'\n')
 
     plot_results(results, img_save_path)
     results.to_csv(data_save_path)
