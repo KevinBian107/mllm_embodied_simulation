@@ -1,12 +1,12 @@
 # UCSD FMP Research
-## Method
+# Method
 This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models.
 
 In summary, we will be presenting a scenario in text to the models and then provide 3 images of the 3 different critical objects for the models to choose. Then, we would extract the probability assigned to each of the images and see if they would match our expectations.
 
 Due to lack of existing data set on image data on affordance critical object, we propose to both generate images from the DALLE Open AI model and collect images online for each of the according critical object in the previous affordance study from (Glenberg & Robertson, 2000). Afterwards, a normalization task would be performed with all the testing MLLMs from Jones and Trott (2023) to ensure that they “understand” all these images separately by doing an initial text/image matching. At last, all of the images would be feed into the testing MLLMs in a triple pair format (image_related x image_afforded x image_non-afforded) for selection after prompting the model with a particular scenario.
 
-## Codes
+# Codes
 The code is mainly separated into three sections & each one has its own data format and data frame format:
 
 ## Data Collections
@@ -19,13 +19,14 @@ The independent variable is the combination item of text scenarios plus critical
 4. Image fro related condition for critical object.
 
 The following is an example of a data point:
-Scenario: “After wading barefoot in the lake, Erik needed something to get dry. What would he use?” (1) Relatedobject:[imageofatowel]
-(2) Affordedobject:[imageofashirt]
-(3) Non-affordedobject:[imageofglasses]
+Scenario: “After wading barefoot in the lake, Erik needed something to get dry. What would he use?”
+1. Relatedobject:[imageofatowel]
+2. Affordedobject:[imageofashirt]
+3. Non-affordedobject:[imageofglasses]
 
 We later on prompt engineered 2 ways (explicit, implicit) of asking the model to select the best image for an given scenario to test its understanding of affordance realtionships, which boost 18 data points to 32 data points
-• Explicit: “What would Erik use to dry himself?”
-• Implicit: “Erik would use this to dry himself”
+1. Explicit: “What would Erik use to dry himself?”
+2. Implicit: “Erik would use this to dry himself”
 
 ## Normalizatons of Data
    All data were normalized prior to feeding into the main experiment by providing all the testing models with three images (i.e. [image of an towel], [image of an glasses], [image of an shirt]) and three texts (i.e. "towel", "glasses", "shirt"). Then the model would conduct vector space location assigning with the 3x3 match/mismatch matrix. We then extract such probability using dot product between vector space distance and SoftMax it to retrieve an probability for each of the pairs to see if our expectation of the matching pairs are met.
