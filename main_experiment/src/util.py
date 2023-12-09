@@ -123,7 +123,6 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
     df = pd.read_csv(csv_path)
     all_results = []
 
-    ### TODO: Change for affordance testing
     for index, item in tqdm(df.iterrows(), total=len(df)):
         # afforded vs non-afforded
         #retrieve separate information for text & images
@@ -142,8 +141,8 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
                 text_features = model.encode_text(text_inputs)
                 image_features = torch.stack([model.encode_image(img_input) for img_input in image_inputs]).squeeze()
                 
-                # Calculate Similarity (image to words)
-                results = torch.softmax(image_features @ text_features.T, dim=-1)
+                # Calculate Similarity (words to images)
+                results = torch.softmax(text_features @ image_features.T, dim=-1)
 
         #model 2 Meta Image Bind
         elif isinstance(model, imagebind_model.ImageBindModel):
@@ -155,8 +154,8 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
             with torch.no_grad():
                 embeddings = model(inputs)
 
-                # Calculate Similarity (image to words)
-                results = torch.softmax(embeddings[ModalityType.VISION] @ embeddings[ModalityType.TEXT].T, dim=-1)
+                # Calculate Similarity (words to images)
+                results = torch.softmax(embeddings[ModalityType.TEXT] @ embeddings[ModalityType.VISION].T, dim=-1)
             
         else:
             raise ValueError("Model must be either 'clip' or 'imagebind'")
@@ -165,7 +164,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
         all_results.append({
             ### replace with probability for afforded and non-afforded
             'afforded': results[0][0].item(),
-            'nonafforded': results[1][0].item(),
+            'non_afforded': results[0][1].item(),
 
             'prompt_type': item['prompt_type'],
             'group_id': item['group_id']
@@ -176,34 +175,34 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
 def format_results(df, model_name, dataset):
     #Like a Permutation Results: Wide -> Long
-    melted_df = pd.melt(df, id_vars = ["group_id"])
-    melted_df['text'] = melted_df['variable'].apply(
-        lambda x: x.split('_')[-1])
-    melted_df['match'] = melted_df['variable'].apply(
-        lambda x: x.split('_')[0])
-    melted_df = melted_df.rename(
-        columns={'value': 'probability'}).drop(columns=['variable'])
+    #Select id to be the same, afforded and non afforded as the variables
+    #36 conditions, 72 separate afforded and non afforded conditions
+    melted_df = pd.melt(df.drop(columns = ['prompt_type']), id_vars = ["group_id"], value_vars=['afforded', 'non_afforded'])
+
+    #Rename columns
+    melted_df['relationships'] = melted_df['variable']
+    melted_df = melted_df.rename(columns={'value': 'probability'}).drop(columns=['variable'])
     print(melted_df)
-    melted_df = melted_df[["text", "match", "probability", "group_id"]]
+
+    #Formatting
+    melted_df = melted_df[["relationships", "probability", "group_id"]]
     melted_df["model"] = model_name
     melted_df["dataset"] = dataset
     return melted_df
-    # To revise for affordance format
 
 def results_summary(df):
-    summary = df[["match", "probability"]].groupby(["match"]).mean()
+    summary = df[["relationships", "probability"]].groupby(["relationships"]).mean()
     return summary
 
 def ttest(df):
     from scipy.stats import ttest_ind
-    match = df[df["match"] == "match"]["probability"]
-    mismatch = df[df["match"] == "mismatch"]["probability"]
-    t, p = ttest_ind(match, mismatch)
+    afforded = df[df["relationships"] == "afforded"]["probability"]
+    non_afforded = df[df["relationships"] == "non_afforded"]["probability"]
+    t, p = ttest_ind(afforded, non_afforded)
     return t, p
 
 def plot_results(df, save_path=None):
-    sns.pointplot(data=df, x="match",
-                  y="probability", hue="text")
+    sns.boxplot(data=df, x="relationships", y="probability")
 
     if save_path:
         plt.savefig(save_path)
