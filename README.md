@@ -1,6 +1,6 @@
 UCSD FMP Research studying the presence of recognizing affordance realytionships in MLLMS
 
-The code is separated into three sections:
+The code is mainly separated into three sections & each one has its own data format and data frame format:
 
 1. Data Collections
   Data collection was done both by manual searching online and also DALLE generation using Open AI API
