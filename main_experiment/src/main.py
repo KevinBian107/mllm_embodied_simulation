@@ -2,7 +2,7 @@
 import os
 import argparse
 import warnings
-from util import (setup_model, analyze_data, format_results, results_summary, ttest, plot_results)
+from util import (setup_model, analyze_data, format_results, results_summary, ttest, anova, plot_results)
 
 
 # Suppress specific warnings
@@ -40,6 +40,11 @@ def main(args):
     t, p = ttest(results)
     print(summary)
     print(f"t = {t}, p = {p}")
+    print()
+
+    anova_result = anova(results)
+    print (anova_result)
+
     plot_results(results, img_save_path)
     results.to_csv(data_save_path)
 

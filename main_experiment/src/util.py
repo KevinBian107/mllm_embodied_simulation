@@ -186,11 +186,11 @@ def format_results(df, model_name, dataset):
     Melting & reformatting the result
     Melting is essentially making some of the columns in the data frame as a tag for variable, making wide df to long df
 
-    1. Select id to be the same, afforded and non afforded as the variables
+    1. Select id adn prompt type to be the id, afforded and non afforded as the variables
     2. 36 conditions, 72 separate afforded and non afforded conditions
 
     '''
-    melted_df = pd.melt(df.drop(columns = ['prompt_type']), id_vars = ["group_id"], value_vars=['afforded', 'non_afforded'])
+    melted_df = pd.melt(df, id_vars = ["group_id",'prompt_type'], value_vars=['afforded', 'non_afforded'])
 
     #Rename columns
     melted_df['relationships'] = melted_df['variable']
@@ -198,7 +198,7 @@ def format_results(df, model_name, dataset):
     print(melted_df)
 
     #Formatting
-    melted_df = melted_df[["relationships", "probability", "group_id"]]
+    melted_df = melted_df[["relationships", 'prompt_type', "probability", "group_id"]]
     melted_df["model"] = model_name
     melted_df["dataset"] = dataset
     return melted_df
@@ -217,14 +217,28 @@ def ttest(df):
     from scipy.stats import ttest_ind
     afforded = df[df["relationships"] == "afforded"]["probability"]
     non_afforded = df[df["relationships"] == "non_afforded"]["probability"]
-    t, p = ttest_ind(afforded, non_afforded)
-    return t, p
+    t, p_t = ttest_ind(afforded, non_afforded)
+
+    return t, p_t
+
+def anova(df):
+    '''
+    Perforem Two Factor ANOVA
+    '''
+    import statsmodels.api as sm 
+    from statsmodels.formula.api import ols
+  
+    # Performing two-way ANOVA 
+    model = ols('probability ~ C(relationships) + C(prompt_type) + C(relationships):C(prompt_type)', data=df).fit()
+    anova_result = sm.stats.anova_lm(model, typ=2) 
+
+    return anova_result
 
 def plot_results(df, save_path=None):
     '''
     Plot results and save plots
     '''
-    sns.boxplot(data=df, x="relationships", y="probability")
+    sns.barplot(data=df, x="relationships", y="probability", hue = "prompt_type")
 
     if save_path:
         plt.savefig(save_path)
