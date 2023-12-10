@@ -30,13 +30,14 @@ The independent variable is the combination item of text scenarios plus critical
 1. Text scenario
 2. Image of affordable condition for critical object
 3. Image for non-affordable condition for critical object
-4. Image fro related condition for critical object.
+4. Image fro related condition for critical object
 
 The following is an example of a data point:
 Scenario: “After wading barefoot in the lake, Erik needed something to get dry. What would he use?”
 1. Relatedobject:[imageofatowel]
 2. Affordedobject:[imageofashirt]
 3. Non-affordedobject:[imageofglasses]
+<img width="317" alt="Screenshot 2023-12-09 at 4 08 33 PM" src="https://github.com/KevinBian107/fmp_research/assets/129793700/e22ae1f8-3032-4540-ad64-e73c2de49105">
 
 We later on prompt engineered 2 ways (explicit, implicit) of asking the model to select the best image for an given scenario to test its understanding of affordance realtionships, which boost 18 data points to 32 data points
 1. Explicit: “What would Erik use to dry himself?”
