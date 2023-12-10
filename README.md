@@ -5,7 +5,7 @@ In human subjects, one potential answer to the “grounding issue” is the embo
 
 # Running
 ```bash
-src/main.py --data [data_base] natural --model [model_name]
+src/main.py --dataset [data_base] --model [model_name]
 ```
 
 # Question & Method
