@@ -20,7 +20,7 @@ The experiment is conducted using the same MLLMs as Jones and Trott did in their
 6. CLIP ViT -bigG-14
 7. ImageBind
 
-# Structure of thsi study
+# Structure of this study
 The code is mainly separated into three sections & each one has its own data format and data frame format:
 
 ## Data Collections
@@ -43,7 +43,7 @@ We later on prompt engineered 2 ways (explicit, implicit) of asking the model to
 2. Implicit: “Erik would use this to dry himself”
 
 ## Normalizatons of Data
-   All data were normalized prior to feeding into the main experiment by providing all the testing models with three images (i.e. [image of an towel], [image of an glasses], [image of an shirt]) and three texts (i.e. "towel", "glasses", "shirt"). Then the model would conduct vector space location assigning with the 3x3 match/mismatch matrix. We then extract such probability using dot product between vector space distance and SoftMax it to retrieve an probability for each of the pairs to see if our expectation of the matching pairs are met.
+All data were normalized prior to feeding into the main experiment by providing all the testing models with three images (i.e. [image of an towel], [image of an glasses], [image of an shirt]) and three texts (i.e. "towel", "glasses", "shirt"). Then the model would conduct vector space location assigning with the 3x3 match/mismatch matrix. We then extract such probability using dot product between vector space distance and SoftMax it to retrieve an probability for each of the pairs to see if our expectation of the matching pairs are met.
 
 All normalization results are formatted into one jupytar notebok
 
