@@ -3,10 +3,9 @@ Advances in computational capabilities and the diversity of available datasets h
 
 In human subjects, one potential answer to the “grounding issue” is the embodied simulation hypothesis, which states that during language comprehension, the brain activates similar regions as if the comprehender is “experiencing” it. The ability to comprehend affordance relationships in sentences may be an method in examining the embodied simulation hypothesis in human subjects (i.e. “Sam is using a shirt to dry himself after a swim” is afforded comparing to its counterparts of “Sam is using glasses to dry himself after a swim”). We wonder if machines, particularly MLLMs, would use a similar schematic approach to “understand” language. Thus, we propose to probe MLLMs’ “understanding” of language through testing its ability for embodied simulation through using particularly affordance stimulus.
 
-# Setup
+# Running
 ```bash
-git clone https://github.com/seantrott/llm_embodiment.git
-pip install -r requirements.txt
+src/main.py --data [data_base] natural --model [model_name]
 ```
 
 # Question & Method
