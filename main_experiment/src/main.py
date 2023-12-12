@@ -17,6 +17,7 @@ def main(args):
     # Parse arguments -> terminal passing in directly
     model_name = args.model
     dataset = args.dataset
+    relationship = args.relationship
 
     # Set up paths
     model, preprocess, tokenizer, device = setup_model(model_name)
@@ -24,20 +25,20 @@ def main(args):
     csv_path = f"data/{dataset}/affordance_{dataset}.csv"
     img_folder = f"data/{dataset}/images"
 
-    img_save_path = f"results/{dataset}/{dataset}_{model_name}.png"
-    data_save_path = f"results/{dataset}/{dataset}_{model_name}.csv"
+    img_save_path = f"results/{dataset}/{dataset}_{model_name}_{relationship}.png"
+    data_save_path = f"results/{dataset}/{dataset}_{model_name}_{relationship}.csv"
 
 
     # Create folders for results
     os.makedirs(f"results/{dataset}", exist_ok=True)
 
     # Run analysis
-    results_raw = analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder)
-    results = format_results(results_raw, model_name, dataset)
+    results_raw = analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, relationship)
+    results = format_results(results_raw, model_name, dataset, relationship)
     summary = results_summary(results)
 
     # Print and save results for data slected
-    t, p = ttest(results)
+    t, p = ttest(results, relationship)
     print(summary)
     print(f"t = {t}, p = {p}", '\n')
 
@@ -53,5 +54,7 @@ if __name__ == "__main__":
                         help='Name of the dataset to process')
     parser.add_argument('--model', type=str, required=True, choices = ['ViT-B-32','ViT-L-14-336','ViT-H-14','ViT-g-14','ViT-bigG-14','ViT-L-14','imagebind'],
                         help='Model to use for analysis')
+    parser.add_argument('--relationship', type=str, required=True, choices = ['afforded','related'],
+                        help='Relationships (afforded, realted)')
     args = parser.parse_args()
     main(args)

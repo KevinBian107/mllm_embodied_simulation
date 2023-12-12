@@ -121,7 +121,7 @@ def setup_model(model_name):
     model.to(device)
     return model, preprocess, tokenizer, device
 
-def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
+def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, relationship):
     '''
     1. Reads in an data frame
     2. Extract texts and images for using model
@@ -135,7 +135,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
         # afforded vs non-afforded
         #retrieve separate information for text & images
         text_list = [item['condition'].strip()] ### only a single text string
-        image_paths = [os.path.join(img_folder, item['afforded_image']),
+        image_paths = [os.path.join(img_folder, item[relationship+'_image']),
                        os.path.join(img_folder, item['non-afforded_image'])]
         
         #model 1 Open AI CLIP
@@ -171,7 +171,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
         #Put everything in a table
         all_results.append({
             ### replace with probability for afforded and non-afforded
-            'afforded': results[0][0].item(),
+            relationship: results[0][0].item(),
             'non_afforded': results[0][1].item(),
 
             'prompt_type': item['prompt_type'],
@@ -181,7 +181,7 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder):
 
     return pd.DataFrame(all_results)
 
-def format_results(df, model_name, dataset):
+def format_results(df, model_name, dataset, relationship):
     '''
     Melting & reformatting the result
     Melting is essentially making some of the columns in the data frame as a tag for variable, making wide df to long df
@@ -190,7 +190,7 @@ def format_results(df, model_name, dataset):
     2. 36 conditions, 72 separate afforded and non afforded conditions
 
     '''
-    melted_df = pd.melt(df, id_vars = ["group_id",'prompt_type'], value_vars=['afforded', 'non_afforded'])
+    melted_df = pd.melt(df, id_vars = ["group_id",'prompt_type'], value_vars=[relationship, 'non_afforded'])
 
     #Rename columns
     melted_df['relationships'] = melted_df['variable']
@@ -210,14 +210,14 @@ def results_summary(df):
     summary = df[["relationships", "probability"]].groupby(["relationships"]).mean()
     return summary
 
-def ttest(df):
+def ttest(df, relationship):
     '''
     Conducting Independnet T Test
     '''
     from scipy.stats import ttest_ind
-    afforded = df[df["relationships"] == "afforded"]["probability"]
+    other_relationship = df[df["relationships"] == relationship]["probability"]
     non_afforded = df[df["relationships"] == "non_afforded"]["probability"]
-    t, p_t = ttest_ind(afforded, non_afforded)
+    t, p_t = ttest_ind(other_relationship, non_afforded)
 
     return t, p_t
 
