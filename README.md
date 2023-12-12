@@ -64,6 +64,8 @@ We later prompt-engineered 2 methods (explicit, implicit) of asking the model to
 ## Normalizatons of Data
 Prior to the main experiment, all data underwent a normalization process. This involved presenting the models with three sets of images (e.g., an image of a towel, glasses, and a shirt) alongside corresponding textual descriptions ("towel", "glasses", "shirt"). The model then engaged in a process of vector space location assignment, utilizing a 3x3 matrix to evaluate matches and mismatches between the images and texts. Following this, we computed the probability for each pair by calculating the dot product of the vector space distances and applying a SoftMax function. This approach allowed us to determine whether the model’s performance on matching pairs aligned with our expectations.
 
+An summary table is produced fro recording the overall data, Random effect model was also performed to ensure equall respondance of different model to the stimulus in normalization.
+
 ## Main Experiment (main experiment can be separated into a few sections)
 1. Creating new data frame
 2. Feeding the input into the MLLMs with one condition pairing to two images of the critical images (18 pairs)
