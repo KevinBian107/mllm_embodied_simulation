@@ -14,8 +14,12 @@ pip install -r requirements.txt
 # Running Main Experiment
 ```bash
 cd main_experiment
-python src/main.py --dataset [dataset_name] --model [model_name]
+python src/main.py --dataset [dataset_name] --model [model_name] --relationship [given relationship]
 ```
+The main.py takes in three command line argument
+1. dataset: choose dataset from ['natural','synthetic']
+2. model: choose model from ['ViT-B-32','ViT-L-14-336','ViT-H-14','ViT-g-14','ViT-bigG-14','ViT-L-14','imagebind']
+3. relationship: relationship is particularly for differentiating the main experiment (afforded v.s. non-afforded) and the follow up manipulation check experiment (related v.s. non-afforded). Choose relationship from ['afforded','related']
 
 # Question & Method
 This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models. *__We are interested in addressing whether multimodal language models can capture the affordances of an object, and its implications in whether artificial systems have some form of embodied cognition.”__*
