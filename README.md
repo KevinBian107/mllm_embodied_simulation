@@ -1,7 +1,9 @@
 # UCSD FMP Research
-Advances in computational capabilities and the diversity of available datasets have led to substantial improvements in the performance of Large Language Models (LLMs) and Computer Vision Models (CVMs). Such progress has generated interest in Multimodal Large Language Models (MLLMs), which integrate textual and visual inputs (Dosovitiskiy et al, 2021). However, much remains unknown about exactly how these models work—in particular, it is not clear how different MLLMs integrate information gleaned from different modalities (e.g., language and vision), and in whether the addition of non-linguistic modalities improves their ability to genuinely “understand” human language. Such a Black Box nature of these models raises concerns about their reliability and interpretability. Current knowledge about how these models represent and interpret the information is minimal, leading to similar issues what cognitive linguists identify as “grounding issues” (Harnad, 1990) in human language comprehension, a challenge concerning the connection of abstract computational representations to real-world meanings.
+Advances in computational capabilities and the diversity of available datasets have led to substantial improvements in the performance of Large Language Models (LLMs) and Computer Vision Models (CVMs). Such progress has generated interest in Multimodal Large Language Models (MLLMs), which integrate textual and visual inputs (Dosovitiskiy et al, 2021). However, much remains unknown about exactly how these models work—in particular, it is not clear how different MLLMs integrate information gleaned from different modalities (e.g., language and vision), and in whether the addition of non-linguistic modalities improves their ability to genuinely “understand” human language. The Black Box nature of these models raises concerns about their reliability and interpretability. Current knowledge about how these models represent and interpret the information is minimal, leading to similar issues what cognitive linguists identify as “grounding issues” (Harnad, 1990) in human language comprehension, a challenge concerning the connection of abstract computational representations to real-world meanings.
 
-In human subjects, one potential answer to the “grounding issue” is the embodied simulation hypothesis, which states that during language comprehension, the brain activates similar regions as if the comprehender is “experiencing” it. The ability to comprehend affordance relationships in sentences may be an method in examining the embodied simulation hypothesis in human subjects (i.e. “Sam is using a shirt to dry himself after a swim” is afforded comparing to its counterparts of “Sam is using glasses to dry himself after a swim”). We wonder if machines, particularly MLLMs, would use a similar schematic approach to “understand” language. Thus, we propose to probe MLLMs’ “understanding” of language through testing its ability for embodied simulation through using particularly affordance stimulus.
+In exploring the 'grounding issue' in human cognition, the embodied simulation hypothesis emerges as a key concept. This hypothesis suggests that when we comprehend language, our brains activate regions similar to those used when we experience the actions or scenarios described. One method to investigate this hypothesis involves examining how humans understand sentences that imply affordance relationships. For instance, comparing the comprehensibility of 'Sam is using a shirt to dry himself after a swim' with 'Sam is using glasses to dry himself after a swim' can reveal insights into this process. 
+
+Given this background, our research turns to machines, specifically Multimodal Large Language Models (MLLMs), to question whether they adopt a similar approach in 'understanding' language. We aim to probe the extent of MLLMs' language comprehension capabilities by testing their ability to perform embodied simulation, particularly through responses to stimuli centered around affordances.
 
 # Install
 ```bash
@@ -16,14 +18,18 @@ python src/main.py --dataset [dataset_name] --model [model_name]
 ```
 
 # Question & Method
-This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models. *__We are interested in addressing the question of “Do multimodal language models capture the affordance relationships of objects in languages and, thus, showing evidence of embodied simulation?”__*
+This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models. *__We are interested in addressing whether multimodal language models can capture the affordances of an object, and its implications in whether artificial systems have some form of embodied cognition.”__*
 
-In summary, we will be presenting a scenario in text to the models and then provide 3 images of the 3 different critical objects for the models to choose. Then, we would extract the probability assigned to each of the images and see if they would match our expectations.
+In our study, we will initially present a textual scenario to various models, accompanied by three images depicting different key objects. Our primary task will be to analyze the probability assigned by the models to each image to determine if their selections align with our hypothesized outcomes.
 
-Due to lack of existing data set on image data on affordance critical object, we propose to both generate images from the DALLE Open AI model and collect images online for each of the according critical object in the previous affordance study from (Glenberg & Robertson, 2000). Afterwards, a normalization task would be performed with all the testing MLLMs from Jones and Trott (2023) to ensure that they “understand” all these images separately by doing an initial text/image matching. At last, all of the images would be feed into the testing MLLMs in a triple pair format (image_related x image_afforded x image_non-afforded) for selection after prompting the model with a particular scenario.
+Given the absence of a pre-existing dataset with images specifically tailored to affordance-related objects, we propose our own unique set of visuals generated using the DALL-E OpenAI model and sourcing relevant images online, each corresponding to the critical objects identified in the previous affordance study by Glenberg & Robertson (2000). 
+
+To ensure the models' accurate recognition of these images, we will conduct a preliminary normalization task. This task, based on the methods of Jones and Trott (2023), will involve a text-to-image matching exercise to verify that each model correctly identifies the images. 
+
+Finally, we will input these images into the models in a structured format—comprising a related image, an image demonstrating the affordance, and a non-afforded image. This setup will be used to evaluate the models' performance in selecting the most appropriate image for each given scenario.
 
 # Models Used
-The experiment is conducted using the same MLLMs as Jones and Trott did in their study into MLLMs’ embodied simulation, which includes six CLIP (developed by Open AI with various sizes and various training data set) model and one ImageBind Model (developed by Meta). Particularly, we are using the models listed below:
+This experiment is conducted using the same MLLMs as was used in the embodied simulation study done by Jones and Trott. This includes six CLIP (developed by OpenAI with various sizes and training dataset) models and one ImageBind Model (developed by Meta):
 1. CLIP ViT-B-32
 2. CLIP ViT-L-14-336
 3. CLIP ViT -L-14
@@ -33,12 +39,12 @@ The experiment is conducted using the same MLLMs as Jones and Trott did in their
 7. ImageBind
 
 # Structure of this study
-The code is mainly separated into three sections & each one has its own data format and data frame format:
+The code is mainly separated into three sections. Each one has its own data format and data frame format.
 
 ## Data Collections
-Data collection was done both by manual searching online and also DALLE generation using Open AI API. We collected 18 triple pairs of data, which constitutes our independent variable
+Data collection was done both by manual searching online, as well as DALLE generation using OpenAI API. We collected data in 18 triples, one natural set and one synthetic set.
 
-The independent variable is the combination item of text scenarios plus critical object image, whcih means that each data has the following components:
+This independent variable is the combination item of text scenarios plus critical object image, which means that each data has the following components:
 1. Text scenario
 2. Image of affordable condition for critical object
 3. Image for non-affordable condition for critical object
@@ -51,14 +57,14 @@ Scenario: “After wading barefoot in the lake, Erik needed something to get dry
 3. Non-affordedobject:[imageofglasses]
 <img width="317" alt="Screenshot 2023-12-09 at 4 08 33 PM" src="https://github.com/KevinBian107/fmp_research/assets/129793700/e22ae1f8-3032-4540-ad64-e73c2de49105">
 
-We later on prompt engineered 2 ways (explicit, implicit) of asking the model to select the best image for an given scenario to test its understanding of affordance realtionships, which boost 18 data points to 32 data points
+We later prompt-engineered 2 methods (explicit, implicit) of asking the model to select the best image for a given scenario to test its understanding of affordance relationships. An example of an explicit version of the prompt vs its implicit version is as follows:
 1. Explicit: “What would Erik use to dry himself?”
 2. Implicit: “Erik would use this to dry himself”
 
 ## Normalizatons of Data
-All data were normalized prior to feeding into the main experiment by providing all the testing models with three images (i.e. [image of an towel], [image of an glasses], [image of an shirt]) and three texts (i.e. "towel", "glasses", "shirt"). Then the model would conduct vector space location assigning with the 3x3 match/mismatch matrix. We then extract such probability using dot product between vector space distance and SoftMax it to retrieve an probability for each of the pairs to see if our expectation of the matching pairs are met.
+Prior to the main experiment, all data underwent a normalization process. This involved presenting the models with three sets of images (e.g., an image of a towel, glasses, and a shirt) alongside corresponding textual descriptions ("towel", "glasses", "shirt"). The model then engaged in a process of vector space location assignment, utilizing a 3x3 matrix to evaluate matches and mismatches between the images and texts. Following this, we computed the probability for each pair by calculating the dot product of the vector space distances and applying a SoftMax function. This approach allowed us to determine whether the model’s performance on matching pairs aligned with our expectations.
 
-All normalization results are formatted into one jupytar notebok
+An summary table is produced fro recording the overall data, Random effect model was also performed to ensure equall respondance of different model to the stimulus in normalization.
 
 ## Main Experiment (main experiment can be separated into a few sections)
 1. Creating new data frame
@@ -69,4 +75,3 @@ All normalization results are formatted into one jupytar notebok
 6. Clean up in a new data frame
 7. Graphing results
 8. Statistical testings -> Independent T Test, Two Factor Independent ANOVA
-   
