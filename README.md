@@ -80,5 +80,7 @@ An summary table is produced fro recording the overall data, Random effect model
 7. Graphing results
 8. Statistical testings -> Independent T Test, Two Factor Independent ANOVA
 
+**Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
+
 ## Manipulation Check
 An follow up experiment is conducted to compare the effect of "related" images and "non-afforded" images for a manipulation check ensuring that the most dundamental understanding is met.
