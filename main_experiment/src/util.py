@@ -184,9 +184,8 @@ def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, rel
 def format_results(df, model_name, dataset, relationship):
     '''
     Melting & reformatting the result
-    Melting is essentially making some of the columns in the data frame as a tag for variable, making wide df to long df
 
-    1. Select id adn prompt type to be the id, afforded and non afforded as the variables
+    1. Select id and prompt type to be the id, afforded and non afforded as the variables
     2. 36 conditions, 72 separate afforded and non afforded conditions
 
     '''
