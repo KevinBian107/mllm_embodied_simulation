@@ -6,3 +6,4 @@ Pillow
 requests
 seaborn
 torch
+openai
