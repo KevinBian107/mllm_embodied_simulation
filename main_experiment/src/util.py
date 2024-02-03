@@ -10,6 +10,7 @@ from imagebind.models import imagebind_model
 from imagebind.models.imagebind_model import ModalityType
 import clip
 import open_clip
+import openai
 
 def preprocess_image(input_folder, output_folder, target_size=(224,224), padding_color=(255,255,255)):
     """
@@ -108,6 +109,10 @@ def setup_model(model_name):
     elif model_name == "imagebind":
         model = imagebind_model.imagebind_huge(pretrained=True)
         preprocess = None
+    
+    elif model_name == "gpt-4-vision-preview":
+        model = None
+        preprocess = None
 
     else:
         raise ValueError("Model not implemented")
@@ -123,9 +128,8 @@ def setup_model(model_name):
 
 def analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, relationship):
     '''
-    1. Reads in an data frame
-    2. Extract texts and images for using model
-    3. Feeding into different model depedns on isnatcnes
+    1. Reads dataframe
+    2. Extracts text and images for specified model
     '''
     #Labeled data set passed in
     df = pd.read_csv(csv_path)
@@ -185,8 +189,8 @@ def format_results(df, model_name, dataset, relationship):
     '''
     Melting & reformatting the result
 
-    1. Select id and prompt type to be the id, afforded and non afforded as the variables
-    2. 36 conditions, 72 separate afforded and non afforded conditions
+    1. Select id and prompt type to be the id, afforded and non-afforded as the variables
+    2. 36 conditions, 72 separate afforded and non-afforded conditions
 
     '''
     melted_df = pd.melt(df, id_vars = ["group_id",'prompt_type'], value_vars=[relationship, 'non_afforded'])
@@ -204,14 +208,14 @@ def format_results(df, model_name, dataset, relationship):
 
 def results_summary(df):
     '''
-    Producing summary for data frame given in
+    Produce summary for given df
     '''
     summary = df[["relationships", "probability"]].groupby(["relationships"]).mean()
     return summary
 
 def ttest(df, relationship):
     '''
-    Conducting Independnet T Test
+    Conduct Independent T-Test
     '''
     from scipy.stats import ttest_ind
     other_relationship = df[df["relationships"] == relationship]["probability"]
@@ -222,7 +226,7 @@ def ttest(df, relationship):
 
 def anova(df):
     '''
-    Perforem Two Factor ANOVA
+    Perform Two-Factor ANOVA
     '''
     import statsmodels.api as sm 
     from statsmodels.formula.api import ols
@@ -235,7 +239,7 @@ def anova(df):
 
 def plot_results(df, save_path=None):
     '''
-    Plot results and save plots
+    Plot and save results
     '''
     sns.barplot(data=df, x="relationships", y="probability", hue = "prompt_type")
 
@@ -243,3 +247,30 @@ def plot_results(df, save_path=None):
         plt.savefig(save_path)
     else:
         plt.show()
+
+"""
+def analyze_data_gpt4v(prompt, image_url):
+    client = openai.OpenAI()
+
+    response = client.chat.completions.create(
+        model = "gpt-4-vision-preview",
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": image_url}}
+                ]
+            }
+        ],
+        max_tokens = 300,
+    )
+
+    # Extract rating from response
+    # If we choose to use rating as proxy for understanding?
+    response_text = response.choices[0]
+    rating = extract_rating(response_text)
+
+def extract_rating(response):
+    # Implement based on prompt + response format
+"""

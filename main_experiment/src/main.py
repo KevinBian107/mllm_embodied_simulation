@@ -33,28 +33,32 @@ def main(args):
     os.makedirs(f"results/{dataset}", exist_ok=True)
 
     # Run analysis
-    results_raw = analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, relationship)
-    results = format_results(results_raw, model_name, dataset, relationship)
-    summary = results_summary(results)
+    if (model_name == 'gpt-4-vision-preview'):
+        print("Hello")
+    
+    else:
+        results_raw = analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, relationship)
+        results = format_results(results_raw, model_name, dataset, relationship)
+        summary = results_summary(results)
 
-    # Print and save results for data slected
-    t, p = ttest(results, relationship)
-    print(summary)
-    print(f"t = {t}, p = {p}", '\n')
+        # Print and save results for data slected
+        t, p = ttest(results, relationship)
+        print(summary)
+        print(f"t = {t}, p = {p}", '\n')
 
-    anova_result = anova(results)
-    print (anova_result,'\n')
+        anova_result = anova(results)
+        print (anova_result,'\n')
 
-    plot_results(results, img_save_path)
-    results.to_csv(data_save_path)
+        plot_results(results, img_save_path)
+        results.to_csv(data_save_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process LLM datasets.')
     parser.add_argument('--dataset', type=str, required=True, choices=['natural','synthetic'],
                         help='Name of the dataset to process')
-    parser.add_argument('--model', type=str, required=True, choices = ['ViT-B-32','ViT-L-14-336','ViT-H-14','ViT-g-14','ViT-bigG-14','ViT-L-14','imagebind'],
+    parser.add_argument('--model', type=str, required=True, choices = ['ViT-B-32','ViT-L-14-336','ViT-H-14','ViT-g-14','ViT-bigG-14','ViT-L-14','imagebind', 'gpt-4-vision-preview'],
                         help='Model to use for analysis')
     parser.add_argument('--relationship', type=str, required=True, choices = ['afforded','related'],
-                        help='Relationships (afforded, realted)')
+                        help='Relationships (afforded, related)')
     args = parser.parse_args()
     main(args)
