@@ -248,29 +248,3 @@ def plot_results(df, save_path=None):
     else:
         plt.show()
 
-"""
-def analyze_data_gpt4v(prompt, image_url):
-    client = openai.OpenAI()
-
-    response = client.chat.completions.create(
-        model = "gpt-4-vision-preview",
-        messages = [
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": prompt},
-                    {"type": "image_url", "image_url": {"url": image_url}}
-                ]
-            }
-        ],
-        max_tokens = 300,
-    )
-
-    # Extract rating from response
-    # If we choose to use rating as proxy for understanding?
-    response_text = response.choices[0]
-    rating = extract_rating(response_text)
-
-def extract_rating(response):
-    # Implement based on prompt + response format
-"""

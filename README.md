@@ -83,4 +83,4 @@ An summary table is produced fro recording the overall data, Random effect model
 **Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
 
 ## Manipulation Check
-An follow up experiment is conducted to compare the effect of "related" images and "non-afforded" images for a manipulation check ensuring that the most dundamental understanding is met.
+A follow-up experiment is conducted to compare the effect of "related" images and "non-afforded" images as a manipulation to ensure that fundamental understanding is met.
