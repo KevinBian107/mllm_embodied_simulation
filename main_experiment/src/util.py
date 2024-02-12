@@ -229,6 +229,7 @@ def anova(df):
     from statsmodels.formula.api import ols
   
     # Performing two-way ANOVA 
+    ### 'probability ~ relationships + prompt_type + relationship:prompt_type'
     model = ols('probability ~ C(relationships) + C(prompt_type) + C(relationships):C(prompt_type)', data=df).fit()
     anova_result = sm.stats.anova_lm(model, typ=2) 
 
