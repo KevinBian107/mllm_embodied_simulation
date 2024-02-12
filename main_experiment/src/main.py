@@ -31,8 +31,7 @@ def main(args):
 
     # Create folders for results
     os.makedirs(f"results/{dataset}", exist_ok=True)
-
-    # Run analysis
+    
     results_raw = analyze_data(model, preprocess, tokenizer, device, csv_path, img_folder, relationship)
     results = format_results(results_raw, model_name, dataset, relationship)
     summary = results_summary(results)
@@ -55,6 +54,6 @@ if __name__ == "__main__":
     parser.add_argument('--model', type=str, required=True, choices = ['ViT-B-32','ViT-L-14-336','ViT-H-14','ViT-g-14','ViT-bigG-14','ViT-L-14','imagebind'],
                         help='Model to use for analysis')
     parser.add_argument('--relationship', type=str, required=True, choices = ['afforded','related'],
-                        help='Relationships (afforded, realted)')
+                        help='Relationships (afforded, related)')
     args = parser.parse_args()
     main(args)
