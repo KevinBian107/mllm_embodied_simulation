@@ -48,11 +48,11 @@ The code is mainly separated into three sections. Each one has its own data form
 ## Data Collections
 Data collection was done both by manual searching online, as well as DALLE generation using OpenAI API. We collected data in 18 triples, one natural set and one synthetic set.
 
-This independent variable is the combination item of text scenarios plus critical object image, which means that each data has the following components:
+The independent variable is the combination item of text scenarios plus critical object image, which means that each data has the following components:
 1. Text scenario
 2. Image of affordable condition for critical object
 3. Image for non-affordable condition for critical object
-4. Image fro related condition for critical object
+4. Image for related condition for critical object
 
 The following is an example of a data point:
 Scenario: “After wading barefoot in the lake, Erik needed something to get dry. What would he use?”
