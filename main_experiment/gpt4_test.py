@@ -29,7 +29,8 @@ Be sure to read the sentences carefully. Please respond only with a number betwe
       ],
     }
   ],
-  max_tokens=300
+  max_tokens=300,
+  temperature = 0
 )
 
 message_content = response.choices[0].message.content
