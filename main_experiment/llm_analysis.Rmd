@@ -1,0 +1,286 @@
+---
+title: "Multimodal Models and Affordances"
+date: "February 12, 2024"
+output:
+  # pdf_document: 
+  #    fig_caption: yes
+  #    keep_md: yes
+  #    keep_tex: yes
+  html_document:
+     keep_md: yes
+     toc: yes
+     toc_float: yes
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(broom)
+library(lme4)
+library(ggridges)
+library(lmerTest)
+library(ggrepel)
+library(tools)
+library(viridis)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+
+# Load data
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/NLMs/fmp_research/main_experiment/")
+df_natural_gpt = read_csv("gpt4v_results/df_natural_temp0.csv")
+df_synthetic_gpt = read_csv("gpt4v_results/df_synthetic_temp0.csv")
+
+nrow(df_natural_gpt)
+nrow(df_synthetic_gpt)
+```
+
+
+# Analysis and Visualization of GPT-4V
+
+## Natural stimuli
+
+```{r}
+df_natural_long = df_natural_gpt %>%
+  pivot_longer(
+    cols = starts_with("gpt4v_result_"), # Select columns starting with 'gpt4v_result_'
+    names_to = "Condition", # Name of the new column to create
+    names_prefix = "gpt4v_result_", # Remove this prefix from the selected column names
+    values_to = "Rating" # The values from these columns go into the 'Result' column
+  )
+
+# Optionally, adjust the 'Condition' values if needed
+df_natural_long$Condition = case_when(
+  df_natural_long$Condition == "afforded" ~ "Afforded",
+  df_natural_long$Condition == "non_afforded" ~ "Non-Afforded",
+  df_natural_long$Condition == "related" ~ "Related",
+  TRUE ~ as.character(df_natural_long$Condition) # Fallback to original value
+)
+
+df_natural_long %>%
+  ggplot(aes(x = Condition, y = Rating, color = prompt_type, shape = prompt_type)) +
+  stat_summary (fun = function(x){mean(x)},
+                fun.min = function(x){mean(x) - 2*sd(x)/sqrt(length(x))},
+                fun.max = function(x){mean(x) + 2*sd(x)/sqrt(length(x))},
+                geom= 'pointrange', 
+                position=position_dodge(width=0.95),
+                size = .5, alpha = .5) +
+  labs(x="Condition", 
+       y="Rating (GPT-4V)",
+       color = "Prompt Type",
+       shape = "Prompt Type") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position="bottom") +
+  scale_y_continuous(limits = c(1, 7), breaks = seq(1:7)) +
+  scale_color_manual(values = my_colors)
+
+
+```
+
+
+
+## Synthetic stimuli
+
+```{r}
+df_synthetic_long = df_synthetic_gpt  %>%
+  pivot_longer(
+    cols = starts_with("gpt4v_result_"), # Select columns starting with 'gpt4v_result_'
+    names_to = "Condition", # Name of the new column to create
+    names_prefix = "gpt4v_result_", # Remove this prefix from the selected column names
+    values_to = "Rating" # The values from these columns go into the 'Result' column
+  )
+
+# Optionally, adjust the 'Condition' values if needed
+df_synthetic_long$Condition = case_when(
+  df_synthetic_long$Condition == "afforded" ~ "Afforded",
+  df_synthetic_long$Condition == "non_afforded" ~ "Non-Afforded",
+  df_synthetic_long$Condition == "related" ~ "Related",
+  TRUE ~ as.character(df_synthetic_long$Condition) # Fallback to original value
+)
+
+df_synthetic_long %>%
+  ggplot(aes(x = Condition, y = Rating, color = prompt_type, shape = prompt_type)) +
+  stat_summary (fun = function(x){mean(x)},
+                fun.min = function(x){mean(x) - 2*sd(x)/sqrt(length(x))},
+                fun.max = function(x){mean(x) + 2*sd(x)/sqrt(length(x))},
+                geom= 'pointrange', 
+                position=position_dodge(width=0.95),
+                size = .5, alpha = .5) +
+  labs(x="Condition", 
+       y="Rating (GPT-4V)",
+       color = "Prompt Type",
+       shape = "Prompt Type") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position="bottom") +
+  scale_y_continuous(limits = c(1, 7), breaks = seq(1:7)) +
+  scale_color_manual(values = my_colors)
+
+```
+
+## All together
+
+```{r}
+### First, merge all together
+df_natural_long_subset = df_natural_long %>%
+  select(Condition, Rating, prompt_type, group_id) %>%
+  mutate(Stimuli = "Natural")
+
+df_synthetic_long_subset = df_synthetic_long %>%
+  select(Condition, Rating, prompt_type, group_id) %>%
+  mutate(Stimuli = "Synthetic")
+
+df_combined = df_synthetic_long_subset %>%
+  rbind(df_natural_long_subset)
+nrow(df_combined)
+
+df_combined %>%
+  group_by(Condition, Stimuli) %>%
+  summarise(m_rating = mean(Rating),
+            sd_rating = sd(Rating))
+
+df_combined %>%
+  ggplot(aes(x = Condition, y = Rating, color = prompt_type, shape = prompt_type)) +
+  stat_summary (fun = function(x){mean(x)},
+                fun.min = function(x){mean(x) - 2*sd(x)/sqrt(length(x))},
+                fun.max = function(x){mean(x) + 2*sd(x)/sqrt(length(x))},
+                geom= 'pointrange', 
+                position=position_dodge(width=0.95),
+                size = .5, alpha = .5) +
+  labs(x="Condition", 
+       y="Rating (GPT-4V)",
+       color = "Prompt Type",
+       shape = "Prompt Type") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position="bottom") +
+  scale_y_continuous(limits = c(1, 7), breaks = seq(1:7)) +
+  scale_color_manual(values = my_colors) +
+  facet_wrap(~Stimuli)
+
+
+
+df_combined %>%
+  ggplot(aes(x = Rating)) +
+  geom_histogram(alpha = .6) +
+  labs(x="Rating") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position="bottom") +
+  facet_wrap(~Stimuli + Condition)
+
+
+```
+
+### `Afforded` vs. `Non-afforded`
+
+```{r}
+
+df_aff_nonaff = df_combined %>%
+  filter(Condition != "Related")
+nrow(df_aff_nonaff)
+
+mod_full = lmer(data = df_aff_nonaff,
+                Rating ~ Condition * prompt_type + 
+                  (1 | Stimuli) +
+                  (1 |group_id), REML = FALSE)
+
+mod_just_fe = lmer(data = df_aff_nonaff,
+                Rating ~  Condition + prompt_type + 
+                  (1 | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_prompt_type = lmer(data = df_aff_nonaff,
+                Rating ~  prompt_type +
+                  (1 | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_condition = lmer(data = df_aff_nonaff,
+                Rating ~  Condition + 
+                  (1 | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+summary(mod_full)
+anova(mod_full, mod_just_fe)
+anova(mod_just_fe, mod_just_prompt_type)
+anova(mod_just_fe, mod_just_condition)
+```
+
+### `Afforded` vs. `Related`
+
+```{r}
+
+df_aff_rel = df_combined %>%
+  filter(Condition != "Non-Afforded")
+nrow(df_aff_rel)
+
+mod_full = lmer(data = df_aff_rel,
+                Rating ~ Condition * prompt_type + 
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_fe = lmer(data = df_aff_rel,
+                Rating ~  Condition + prompt_type + 
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_prompt_type = lmer(data = df_aff_rel,
+                Rating ~  prompt_type +
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_condition = lmer(data = df_aff_rel,
+                Rating ~  Condition + 
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+summary(mod_full)
+anova(mod_full, mod_just_fe)
+anova(mod_just_fe, mod_just_prompt_type)
+anova(mod_just_fe, mod_just_condition)
+```
+
+### `Non-Afforded` vs. `Related`
+
+```{r}
+
+df_nonaff_rel = df_combined %>%
+  filter(Condition != "Afforded")
+nrow(df_nonaff_rel)
+
+mod_full = lmer(data = df_nonaff_rel,
+                Rating ~ Condition * prompt_type + 
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_fe = lmer(data = df_nonaff_rel,
+                Rating ~  Condition + prompt_type + 
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_prompt_type = lmer(data = df_nonaff_rel,
+                Rating ~  prompt_type +
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+mod_just_condition = lmer(data = df_nonaff_rel,
+                Rating ~  Condition + 
+                  (1 + Condition | Stimuli) +
+                  (1|group_id), REML = FALSE)
+
+summary(mod_full)
+anova(mod_full, mod_just_fe)
+anova(mod_just_fe, mod_just_prompt_type)
+anova(mod_just_fe, mod_just_condition)
+```
