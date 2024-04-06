@@ -2,15 +2,12 @@
 title: "Multimodal Models and Affordances"
 date: "February 12, 2024"
 output:
-  # pdf_document: 
-  #    fig_caption: yes
-  #    keep_md: yes
-  #    keep_tex: yes
+  pdf_document:
+    toc: true
   html_document:
-     keep_md: yes
-     toc: yes
-     toc_float: yes
-
+    keep_md: true
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
