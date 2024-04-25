@@ -86,9 +86,11 @@ Main experiment can be separated into a few sections
 6. Clean up in a new data frame
 7. Graphing results
 8. Statistical testings -> Independent T Test, Two Factor Independent ANOVA
-## Study 2 (GPT-4V)
 
 **Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
+
+### Study 2 (GPT-4V)
+1. 
 
 ## Manipulation Check
 A follow-up experiment is conducted to compare the effect of "related" images and "non-afforded" images as a manipulation to ensure that fundamental understanding is met.
