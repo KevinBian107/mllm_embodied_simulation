@@ -90,7 +90,10 @@ Main experiment can be separated into a few sections
 **Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
 
 ### Study 2 (GPT-4V)
-1. 
+Since we do not have access to GPT-4V’s internal embeddings at the time of this study, this test was conducted through interacting with GPT-4V’s API. To obtain a “sensibility ranking” for the use of each object in the images within the context of the 18 scenarios, we issued prompts to the system that were preceded by a specific instruction designed to elicit this ranking:
+
+“In this task, you will read short passages and look at an image of an object. Please rate how sensible it would be to take the action described in the last sentence using the object in
+the image in the context of the whole passage. The scale goes from 1 (virtual nonsense) to 7 (completely sensible). Be sure to read the sentences carefully. Please respond only with a number between 1 and 7.”
 
 ## Manipulation Check
 A follow-up experiment is conducted to compare the effect of "related" images and "non-afforded" images as a manipulation to ensure that fundamental understanding is met.
