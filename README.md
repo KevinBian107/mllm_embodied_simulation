@@ -34,6 +34,7 @@ Finally, we will input these images into the models in a structured format—com
 
 # Models Used
 This experiment is conducted using the same MLLMs as was used in the embodied simulation study done by Jones and Trott. This includes six CLIP (developed by OpenAI with various sizes and training dataset) models, one ImageBind Model (developed by Meta), and the latest GPT-4V MLLM:
+
 **For Normalization:**
 1. CLIP ViT-B-32
 2. CLIP ViT-L-14-336
