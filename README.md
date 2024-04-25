@@ -1,11 +1,11 @@
 # UCSD FMP Research
-Advances in computational capabilities and the diversity of available datasets have led to substantial improvements in the performance of Large Language Models (LLMs) and Computer Vision Models (CVMs). Such progress has generated interest in Multimodal Large Language Models (MLLMs), which integrate textual and visual inputs (Dosovitiskiy et al, 2021). However, much remains unknown about exactly how these models work—in particular, it is not clear how different MLLMs integrate information gleaned from different modalities (e.g., language and vision), and in whether the addition of non-linguistic modalities improves their ability to genuinely “understand” human language. The Black Box nature of these models raises concerns about their reliability and interpretability. Current knowledge about how these models represent and interpret the information is minimal, leading to similar issues what cognitive linguists identify as “grounding issues” (Harnad, 1990) in human language comprehension, a challenge concerning the connection of abstract computational representations to real-world meanings.
+Advancements in computational technology and the diversity of available datasets have led to substantial improvements in Large Language Models (LLMs) and Computer Vision Models (CVMs), leading to the emergence of Multimodal Large Language Models (MLLMs) that integrate together both textual and visual data to improve understanding and interaction capabilities (Dosovitiskiy et al, 2021). Despite these advances, significant gaps remain in our understanding of how MLLMs synthesize and interpret this integrated data, particularly in relation to human-like language comprehension and real-world interaction. The “Black Box” nature of these models further complicates efforts to assess their reliability and interpretability, echoing cognitive linguists’ concerns about symbol grounding issues–how abstract computational entities relate to tangible, real-world entities and experiences (Harnad, 1990).
 
-In exploring the 'grounding issue' in human cognition, the embodied simulation hypothesis emerges as a key concept. This hypothesis suggests that when we comprehend language, our brains activate regions similar to those used when we experience the actions or scenarios described. One method to investigate this hypothesis involves examining how humans understand sentences that imply affordance relationships. For instance, comparing the comprehensibility of 'Sam is using a shirt to dry himself after a swim' with 'Sam is using glasses to dry himself after a swim' can reveal insights into this process. 
+Embodied simulation, the theory that language comprehension in humans is rooted in physical experiences, offers a framework for evaluating AI’s potential to navigate and understand the world more intuitively. This theory suggests that human language comprehension is profoundly tied to physical experience, a notion supported by cognitive psychologists like Bergen (2015) and Feldman and Narayanan (2003), who posit that such a mechanism is essential for resolving the symbol grounding issue. Empirical support for this theory is evident in phenomena such as the “match effect”, where comprehension in humans is enhanced when sensory experiences align with linguistic inputs (Stanfield & Zwann, 2001; Pecher et al., 2009; Connell, 2007). This hypothesis suggests that when we comprehend language, our brains activate regions similar to those used when we experience the actions or scenarios described. One method to investigate this hypothesis involves examining how humans understand sentences that imply affordance relationships. For instance, comparing the comprehensibility of 'Sam is using a shirt to dry himself after a swim' with 'Sam is using glasses to dry himself after a swim' can reveal insights into this process. 
 
 Given this background, our research turns to machines, specifically Multimodal Large Language Models (MLLMs), to question whether they adopt a similar approach in 'understanding' language. We aim to probe the extent of MLLMs' language comprehension capabilities by testing their ability to perform embodied simulation, particularly through responses to stimuli centered around affordances.
 
-# Install
+# Clone & Instal
 ```bash
 git clone https://github.com/KevinBian107/fmp_research.git
 pip install -r requirements.txt
@@ -33,14 +33,18 @@ To ensure the models' accurate recognition of these images, we will conduct a pr
 Finally, we will input these images into the models in a structured format—comprising a related image, an image demonstrating the affordance, and a non-afforded image. This setup will be used to evaluate the models' performance in selecting the most appropriate image for each given scenario.
 
 # Models Used
-This experiment is conducted using the same MLLMs as was used in the embodied simulation study done by Jones and Trott. This includes six CLIP (developed by OpenAI with various sizes and training dataset) models and one ImageBind Model (developed by Meta):
+This experiment is conducted using the same MLLMs as was used in the embodied simulation study done by Jones and Trott. This includes six CLIP (developed by OpenAI with various sizes and training dataset) models, one ImageBind Model (developed by Meta), and the latest GPT-4V MLLM:
+**For Normalization:**
 1. CLIP ViT-B-32
 2. CLIP ViT-L-14-336
 3. CLIP ViT -L-14
 4. CLIP ViT -H-14
 5. CLIP ViT -G-14
 6. CLIP ViT -bigG-14
-7. ImageBind
+
+**For Experiments:**
+1. ImageBind
+2. GPT-4V
 
 # Structure of this study
 The code is mainly separated into three sections. Each one has its own data format and data frame format.
@@ -70,7 +74,9 @@ Prior to the main experiment, all data underwent a normalization process. This i
 
 An summary table is produced fro recording the overall data, Random effect model was also performed to ensure equall respondance of different model to the stimulus in normalization.
 
-## Main Experiment (main experiment can be separated into a few sections)
+## Main Experiments
+Main experiment can be separated into a few sections
+### Study 1 (ImageBind)
 1. Creating new data frame
 2. Feeding the input into the MLLMs with one condition pairing to two images of the critical images (18 pairs)
 3. Each codition has 2 prompts (18 pairs -> 36 pairs)
@@ -79,6 +85,7 @@ An summary table is produced fro recording the overall data, Random effect model
 6. Clean up in a new data frame
 7. Graphing results
 8. Statistical testings -> Independent T Test, Two Factor Independent ANOVA
+## Study 2 (GPT-4V)
 
 **Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
 
