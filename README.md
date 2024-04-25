@@ -11,9 +11,9 @@ git clone https://github.com/KevinBian107/fmp_research.git
 pip install -r requirements.txt
 ```
 
-# Running Main Experiment
+# Running Main Experiment in Study1
 ```bash
-cd main_experiment
+cd study1
 python src/main.py --dataset [dataset_name] --model [model_name] --relationship [given relationship]
 ```
 The main.py takes in three command line argument
