@@ -77,7 +77,6 @@ Scenario: “After wading barefoot in the lake, Erik needed something to get dry
 1. Relatedobject:[imageofatowel]
 2. Affordedobject:[imageofashirt]
 3. Non-affordedobject:[imageofglasses]
-<img width="500" alt="Screenshot 2023-12-09 at 4 08 33 PM" src="https://github.com/KevinBian107/fmp_research/assets/129793700/e22ae1f8-3032-4540-ad64-e73c2de49105">
 
 We later prompt-engineered 2 methods (explicit, implicit) of asking the model to select the best image for a given scenario to test its understanding of affordance relationships. An example of an explicit version of the prompt vs its implicit version is as follows:
 1. Explicit: “What would Erik use to dry himself?”
