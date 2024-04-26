@@ -1,23 +1,17 @@
 # UCSD FMP Research
 Advancements in computational technology and the diversity of available datasets have led to substantial improvements in Large Language Models (LLMs) and Computer Vision Models (CVMs), leading to the emergence of Multimodal Large Language Models (MLLMs) that integrate together both textual and visual data to improve understanding and interaction capabilities (Dosovitiskiy et al, 2021). Despite these advances, significant gaps remain in our understanding of how MLLMs synthesize and interpret this integrated data, particularly in relation to human-like language comprehension and real-world interaction. The “Black Box” nature of these models further complicates efforts to assess their reliability and interpretability, echoing cognitive linguists’ concerns about symbol grounding issues–how abstract computational entities relate to tangible, real-world entities and experiences (Harnad, 1990).
 
-Embodied simulation, the theory that language comprehension in humans is rooted in physical experiences, offers a framework for evaluating AI’s potential to navigate and understand the world more intuitively. This theory suggests that human language comprehension is profoundly tied to physical experience, a notion supported by cognitive psychologists like Bergen (2015) and Feldman and Narayanan (2003), who posit that such a mechanism is essential for resolving the symbol grounding issue. Empirical support for this theory is evident in phenomena such as the “match effect”, where comprehension in humans is enhanced when sensory experiences align with linguistic inputs (Stanfield & Zwann, 2001; Pecher et al., 2009; Connell, 2007).
+Embodied simulation, the theory that language comprehension in humans is rooted in physical experiences, offers a framework for evaluating AI’s potential to navigate and understand the world more intuitively. This theory suggests that human language comprehension is profoundly tied to physical experience, a notion supported by cognitive psychologists like Bergen (2015) and Feldman and Narayanan (2003), who posit that such a mechanism is essential for resolving the symbol grounding issue. Empirical support for this theory is evident in phenomena such as the “match effect”, where comprehension in humans is enhanced when sensory experiences align with linguistic inputs (Stanfield & Zwann, 2001; Pecher et al., 2009; Connell, 2007). This hypothesis suggests that when we comprehend language, our brains activate regions similar to those used when we experience the actions or scenarios described. One method to investigate this hypothesis involves examining how humans understand sentences that imply affordance relationships. For instance, comparing the comprehensibility of 'Sam is using a shirt to dry himself after a swim' with 'Sam is using glasses to dry himself after a swim' can reveal insights into this process. 
 
-Further inquiry into the symbol grounding issue reveals challenges in modeling semantic meaning through computational systems. Glenberg and Robertson (2000) demonstrate that while distributional models are proficient in capturing certain linguistic patterns, they fall short when it comes to addressing scenarios that require an understanding grounded in sensory and motor experiences. Affordance, or the actions that an agent can perform with an object, exhibits how lacking grounded experiences impedes an agent’s ability in deriving affordances. While humans, with lived experiences in the world, innately know that a chair affords sitting for humanlike bodies and does not afford sitting for elephants, can distributional models, lacking connection to perceptual or actionable experience, possibly understand the same?
-
-Jones et al. (2022) addresses this question using contemporary LLMs like GPT-3 and replicating experiments that examine their sensitivity to the affordance of actions. Their findings show that while models have advanced and are able to capture a third of the effect seen in human  judgment, they still rely heavily on distributional statistics and do not fully incorporate the nuanced understanding of physical interactions. As they still do not adequately account for affordances in comparison to humans, there remains the question of whether this gap in performance is due to the lack of physical interaction experience or the inherent nature of how these models are trained primarily on textual data.
-
-This brings us to the present work, which explores whether having a model which integrates both textual and visual data can surpass the limitations of purely text-based systems by synthesizing information across modalities to understand object affordances and contextual interactions more deeply. By leveraging the strengths of both visual and textual data, these artificial systems might offer new pathways to address the symbol grounding problem, embodied cognition, and approach closer to human-like understanding and reasoning in real-world scenarios. Furthermore, by examining their performance in contextually rich, multimodal scenarios, we seek to enhance our understanding of AI’s interpretability and reliability.
-
+Given this background, our research turns to machines, specifically Multimodal Large Language Models (MLLMs), to question whether they adopt a similar approach in 'understanding' language. We aim to probe the extent of MLLMs' language comprehension capabilities by testing their ability to perform embodied simulation, particularly through responses to stimuli centered around affordances.
 
 # Clone & Instal
 ```bash
-git clone https://github.com/KevinBian107/mllm_embodied_simulation.git
+git clone https://github.com/KevinBian107/fmp_research.git
 pip install -r requirements.txt
 ```
 
-# Running Main Experiments
-## Experiment in Study1
+# Running Main Experiment in Study1
 ```bash
 cd study1
 python src/main.py --dataset [dataset_name] --model [model_name] --relationship [given relationship]
@@ -26,12 +20,6 @@ The main.py takes in three command line argument
 1. dataset: choose dataset from ['natural','synthetic']
 2. model: choose model from ['ViT-B-32','ViT-L-14-336','ViT-H-14','ViT-g-14','ViT-bigG-14','ViT-L-14','imagebind']
 3. relationship: relationship is particularly for differentiating the main experiment (afforded v.s. non-afforded) and the follow up manipulation check experiment (related v.s. non-afforded). Choose relationship from ['afforded','related']
-
-## Experiment in Study2
-```bash
-cd study2
-```
-The gpt4v_prompt.ipynb file contains most of the work for this experiment.
 
 # Question & Method
 This repository is for studying the potential presence of MLLMs' ability in recognizing affordance realytionships in human languages, hence, showing potential presence of embodied simulation in these multimodal models. *__We are interested in addressing whether multimodal language models can capture the affordances of an object, and its implications in whether artificial systems have some form of embodied cognition.”__*
@@ -54,11 +42,10 @@ This experiment is conducted using the same MLLMs as was used in the embodied si
 4. CLIP ViT -H-14
 5. CLIP ViT -G-14
 6. CLIP ViT -bigG-14
-7. ImageBind
 
 **For Experiments:**
-1. Study1: ImageBind
-2. Study2: GPT-4V
+1. ImageBind
+2. GPT-4V
 
 # Structure of this study
 The code is mainly separated into three sections. Each one has its own data format and data frame format.
@@ -89,12 +76,8 @@ Prior to the main experiment, all data underwent a normalization process. This i
 An summary table is produced fro recording the overall data, Random effect model was also performed to ensure equall respondance of different model to the stimulus in normalization.
 
 ## Main Experiments
-Main experiment can be separated into a 2 main sections with each having sub components
-
+Main experiment can be separated into a few sections
 ### Study 1 (ImageBind)
-For each of the 18 scenarios from each data set, two different prompt types were tested: one with an explicit question (i.e. "Brad was sitting in his office when an intruder threatened him with a knife. Which object did Brad use to defend himself?") and another with a reference to an implicit 'this' statement (i.e.  "Brad was sitting in his office when an intruder threatened him with a knife. Brad used this to defend himself."). Only the Afforded and Non-Afforded images were presented to the model for the primary research question. The Canonical image was used in the follow up manipulation check. After presentation of each prompt, we extracted the cosine distance between the scenario description and each image. This distance measures the similarity between the textual scenario and the visual representation of each object, where smaller distances indicate greater similarity. Probabilities were then calculated by applying the Softmax function to the cosine distances, converting the distances into a probability distribution. This allows for quantitative assessment of MLLM's ability to comprehend affordances.
-
-**Steps breakdown:**
 1. Creating new data frame
 2. Feeding the input into the MLLMs with one condition pairing to two images of the critical images (18 pairs)
 3. Each codition has 2 prompts (18 pairs -> 36 pairs)
@@ -103,7 +86,8 @@ For each of the 18 scenarios from each data set, two different prompt types were
 6. Clean up in a new data frame
 7. Graphing results
 8. Statistical testings -> Independent T Test, Two Factor Independent ANOVA
-9. **Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
+
+**Notice: When uploaded to github, the imagebind checkpint folder was deleted due to its large size**
 
 ### Study 2 (GPT-4V)
 Since we do not have access to GPT-4V’s internal embeddings at the time of this study, this test was conducted through interacting with GPT-4V’s API. To obtain a “sensibility ranking” for the use of each object in the images within the context of the 18 scenarios, we issued prompts to the system that were preceded by a specific instruction designed to elicit this ranking:
@@ -112,4 +96,4 @@ Since we do not have access to GPT-4V’s internal embeddings at the time of thi
 the image in the context of the whole passage. The scale goes from 1 (virtual nonsense) to 7 (completely sensible). Be sure to read the sentences carefully. Please respond only with a number between 1 and 7.”
 
 ## Manipulation Check
-A follow-up experiment is conducted for both studies to compare the effect of "related" images and "non-afforded" images as a manipulation to ensure that fundamental understanding is met.
+A follow-up experiment is conducted to compare the effect of "related" images and "non-afforded" images as a manipulation to ensure that fundamental understanding is met.
